@@ -15,8 +15,6 @@ app.get('/', function (req, res) {
     })
 })
 
-require('./compile-template')
 
-
-//编辑模板源码
+//模板的一切
 require('./tpl')

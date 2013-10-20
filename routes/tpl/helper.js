@@ -2,48 +2,28 @@
  * Created by 松松 on 13-10-19.
  */
 
-
-
 var allowRe = /^[a-zA-Z\u4e00-\u9fa5][a-zA-Z0-9\u4e00-\u9fa5]+$/
 var allowType = /^(string|img|number)$/i
 var tagRe = /#each[\s]*\([\s\S]+?\)/gmi
 var idRe = /id[\s]*:[\s]*([a-z0-9]{40}(?:[,)\s]))/
-
 var crypto = require('crypto')
 
-//此方法负责给模板增加ID
-app.post('/compile-template', function (req, res) {
-
-    //获取标签字段信息
-    var content = req.body.content;
-    var pageName = req.body['page-name']
-    var pageUrl = req.body['page-url']
-    //首先检测模板合法性，如果模板存在语法错误，则直接告诉client进行修改
-    try {
-        checkTemplate(content)
-    } catch (e) {
-        res.json({err: e})
-        return
-    }
-
-})
-
-
 //检查并修正错误的id
-exports.checkId = function (content) {
+exports.checkId = function (content, random) {
     var tag = content.match(tagRe)
     if (tag) {
         tag.forEach(function (item) {
             if (idRe.test(item) === false) {
                 //如果ID不合法，就生成一个新的ID
                 var newId = crypto.createHash('sha1');
-                newId.update(tag + req.sessionID + Date.now() + Math.random());
+                //随机因子+时间戳，保证生成的sha1效验和是唯一的
+                newId.update(item + (typeof item === 'string' ? random : Math.random().toString()) + Date.now() + Math.random());
                 //生成一个新id，在这之前删除掉错误的id
-                content = content.replace(item, tag.replace(/[\s\r\n]/gmi, '')
+                content = content.replace(item, item.replace(/[\s\r\n]/gmi, '')
                     .replace(/id[\s]*:[\s]*[^,)\s]+/gi, '')
                     .replace(/(?:,,)/g, ',')
                     .replace(/,\)/g, ')')
-                    .replace(/\)$/, ',id:' + newId + ')'))
+                    .replace(/\)$/, ',id:' + newId.digest('hex') + ')'))
             } else {
                 content = content.replace(item, item.replace(/[\s\r\n]/gm, ''))
             }
@@ -57,7 +37,7 @@ exports.checkPageName = function (str) {
     return typeof str === 'string' && str.trim().length > 0 ? str.trim() : false
 }
 
-//检测URL
+//尝试优化页面URL并返回检测结果
 var pageUrlRe = /^[a-zA-Z0-9-_/]+$/
 exports.checkPageUrl = function (url) {
     url = typeof url === 'string' ? url.trim() : ''
@@ -66,7 +46,7 @@ exports.checkPageUrl = function (url) {
 }
 
 //检测模板中#each标签的合法性
-function checkTemplate(content) {
+exports.checkTemplate = function (content) {
     //获取标签字段信息
     var tag = content.match(tagRe)
     var result = []

@@ -8,8 +8,11 @@ define(function (require, exports, module) {
     var $form = $(document.forms['update-source'])
     $form.on('submit', function (ev) {
         ev.preventDefault()
-        console.log($form.serialize())
-    })
 
+        $.post('/edit/update-source', $form.serialize(), function (data) {
+            console.log(data);
+        })
+
+    })
 
 })

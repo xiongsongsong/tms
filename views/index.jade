@@ -3,8 +3,8 @@ extends layout
 block content
     h1= title
     form(action="/preview",name="origin-template")
-        input(type="text",name="page-name",placeholder="页面名称",size="100")
-        input(type="text",name="page-url",placeholder="页面访问的URL",size="150")
+        input(type="text",name="page_name",placeholder="页面名称",size="100")
+        input(type="text",name="page_url",placeholder="页面访问的URL",size="150")
         textarea#textarea(name="content",rows=20,cols=150)
             | #each(group:首屏,title:首焦Banner,fields:{标题:string,图片:img},row:30,defaultRow:10,id:6a204bd89f3c8348afd5c77c717a097a)
             | <h2>\#{标题}</h2>

@@ -6,25 +6,8 @@
 var app = require('app')
 var db = require('db')
 
+//编辑模板源代码
+require('./edit')
 
-app.get(/\/edit\/(.+)/, function (req, res) {
-    var ObjectId = db.mongodb.ObjectID
-    try {
-        var id = ObjectId(req.params[0])
-    } catch (e) {
-        res.end('err:' + e)
-        return
-    }
-    var tplSource = new db.Collection(db.Client, 'tpl-source')
-
-    tplSource.findOne({page_id: id}, {sort: [
-        ['ts', -1]
-    ]}, function (err, docs) {
-        if (!err && docs) {
-            res.render('tpl/edit-source', docs)
-        } else {
-            res.end('404')
-        }
-    })
-
-})
+//新建模板
+require('./new')
