@@ -48,11 +48,6 @@ app.post('/edit/update-source', function (req, res) {
     pageName = helper.checkPageName(pageName)
     if (!pageName) err.push('错误的页面名称')
 
-
-    //检测页面URL
-    var pageUrl = helper.checkPageUrl(pageUrl)
-    if (!pageUrl) err.push('错误的页面地址')
-
     //检测页面ID并尝试修正错误或为空的ID
     content = helper.checkId(content, req.sessionID)
 
@@ -79,14 +74,14 @@ app.post('/edit/update-source', function (req, res) {
     var tpl = new db.Collection(db.Client, 'tpl')
     var tplSource = new db.Collection(db.Client, 'tpl-source')
 
-    tpl.findOne({_id: page_id}, {_id: 1, page_name: 1}, function (err, docs) {
+    tpl.findOne({_id: page_id}, {_id: 1, page_name: 1,page_url:1}, function (err, docs) {
         if (!err && docs) {
             tplSource.insert({
                 page_id: page_id,
                 //页面名称是可变的，故每次都记录值
                 page_name: pageName,
                 //目前页面URL是不可变的，记录是为了提高信息量便于以后扩展
-                page_url: pageUrl,
+                page_url: docs.page_url,
                 source: content,
                 owner_id: req.session._id,
                 owner_name: req.session.name,
