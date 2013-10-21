@@ -4,8 +4,8 @@
 
 var allowRe = /^[a-zA-Z\u4e00-\u9fa5][a-zA-Z0-9\u4e00-\u9fa5]+$/
 var allowType = /^(string|img|number)$/i
-var tagRe = /#each[\s]*\([\s\S]+?\)/gmi
-var idRe = /id[\s]*:[\s]*([a-z0-9]{40}(?:[,)\s]))/
+var tagRe = /#each[\s]*\{[\s\S]+?\}/gmi
+var idRe = /id[\s]*:[\s]*[a-z0-9]{40}/
 var crypto = require('crypto')
 
 //检查并修正错误的id
@@ -20,15 +20,16 @@ exports.checkId = function (content, random) {
                 newId.update(item + (typeof item === 'string' ? random : Math.random().toString()) + Date.now() + Math.random());
                 //生成一个新id，在这之前删除掉错误的id
                 content = content.replace(item, item.replace(/[\s\r\n]/gmi, '')
-                    .replace(/id[\s]*:[\s]*[^,)\s]+/gi, '')
+                    .replace(/id[\s]*:[\s]*[^,}\s]+/gi, '')
                     .replace(/(?:,,)/g, ',')
-                    .replace(/,\)/g, ')')
-                    .replace(/\)$/, ',id:' + newId.digest('hex') + ')'))
+                    .replace(/,\}/g, ')')
+                    .replace(/\}$/, ',id:' + newId.digest('hex') + '}'))
             } else {
                 content = content.replace(item, item.replace(/[\s\r\n]/gm, ''))
             }
         })
     }
+    console.log(content)
     return content
 }
 
@@ -74,7 +75,7 @@ exports.checkTemplate = function (content) {
         }
 
         field.forEach(function (item) {
-            if (item.split(':').length !== 2) {
+            if (item.split(':').length !== 3) {
                 fail.push(item + ' 必须用冒号指定字段的类型')
                 return
             }
