@@ -6,13 +6,13 @@ block content
         input(type="text",name="page_name",placeholder="页面名称",size="100")
         input(type="text",name="page_url",placeholder="页面访问的URL",size="150")
         textarea#textarea(name="content",rows=20,cols=150)
-            | #each(group:首屏,title:首焦Banner,fields:{标题:string,图片:img},row:30,defaultRow:10,id:6a204bd89f3c8348afd5c77c717a097a)
+            | #each{group:首屏,title:首焦Banner,title:标题:string,img:图片:img,row:30,defaultRow:10,id:6a204bd89f3c8348afd5c77c717a097a}
             | <h2>\#{标题}</h2>
             | #end
-            | #each(group:首屏,title:小商品,fields:{标题:string,图片:img,折扣价:number},row:30,defaultRow:10,id:6a204bd89f3c8348afd5c77c717a097a)
+            | #each{group:首屏,title:首焦Banner,title:标题:string,img:图片:img,row:30,defaultRow:10,id:6a204bd89f3c8348afd5c77c717a097a}
             | <h2>\#{标题}</h2>
             | #end
-            | #each(group:轮播,title:图片和链接,fields:{标题:string,图片:img},row:30,defaultRow:10,id:6a204bd89f3c8348afd5c77c717a097a)
+            | #each{group:首屏,title:首焦Banner,title:标题:string,img:图片:img,row:30,defaultRow:10,id:6a204bd89f3c8348afd5c77c717a097a}
             | <h2>\#{标题}</h2>
             | #end
         input(type="submit",value="开始编译模板并构造表单")

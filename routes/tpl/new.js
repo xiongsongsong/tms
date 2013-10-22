@@ -33,9 +33,15 @@ app.post('/compile-template', function (req, res) {
 
     //首先检测模板合法性，如果模板存在语法错误，则直接告诉client进行修改
     try {
-        helper.checkTemplate(content)
+        var eachResult = helper.checkTemplate(content)
     } catch (e) {
+        console.log('checkTemplate发生错误' + e)
         res.json({err: e})
+        return
+    }
+
+    if (eachResult.err) {
+        res.json({err: eachResult.err})
         return
     }
 

@@ -2,8 +2,8 @@
  * Created by 松松 on 13-10-19.
  */
 
-var allowRe = /^[a-zA-Z\u4e00-\u9fa5][a-zA-Z0-9\u4e00-\u9fa5]+$/
-var allowType = /^(string|img|number)$/i
+var fieldRe = /^[a-zA-Z\u4e00-\u9fa5][a-zA-Z0-9\u4e00-\u9fa5]+$/
+var allowType = /^(string|img)$/i
 var tagRe = /#each[\s]*\{[\s\S]+?\}/gmi
 var idRe = /id[\s]*:[\s]*[a-z0-9]{40}/
 var crypto = require('crypto')
@@ -22,14 +22,14 @@ exports.checkId = function (content, random) {
                 content = content.replace(item, item.replace(/[\s\r\n]/gmi, '')
                     .replace(/id[\s]*:[\s]*[^,}\s]+/gi, '')
                     .replace(/(?:,,)/g, ',')
-                    .replace(/,\}/g, ')')
+                    .replace(/,\}/g, '}')
                     .replace(/\}$/, ',id:' + newId.digest('hex') + '}'))
             } else {
                 content = content.replace(item, item.replace(/[\s\r\n]/gm, ''))
             }
         })
     }
-    console.log(content)
+    // console.log(content)
     return content
 }
 
@@ -46,94 +46,95 @@ exports.checkPageUrl = function (url) {
     return pageUrlRe.test(url) ? url : false
 }
 
-//检测模板中#each标签的合法性
+//将模板中#each中的的属性检索出来
+//如果没有任何错误，则返回所有字段定义
+//否则返回错误信息
 exports.checkTemplate = function (content) {
     //获取标签字段信息
     var tag = content.match(tagRe)
-    var result = []
-    var err = []
-
+    //存放字段定义的信息
+    var result = {status: 1, arr: [], warning: []}
+    //存放错误的信息
+    var errResult = {status: -1, err: []}
     if (!tag) return content
     tag.forEach(function (item) {
         var fail = []
-        //获取字段描述信息
-        var fieldValue = item.match(/fields:\{([^}]+)\}/)
-        var field = fieldValue[1].replace(/\s/g, '').split(',')
-        //获取Group
-        var group = item.match(/group:([^\s,)]+)/)
-        if (group) {
-            group = group[1]
-        } else {
-            fail.push('没找到Group信息，原文本为：' + item)
+        var param = exports.searchParam(item)
+        if (!param.tab.group) {
+            fail.push('没找到group定义')
         }
-        //获取标题信息
-        var title = item.match(/title:([^\s,)]+)/)
-        if (title) {
-            title = title[1]
-        } else {
-            fail.push('无法获取' + item + '的title信息')
+        if (!param.tab.title) {
+            fail.push('没找到title定义')
         }
 
-        field.forEach(function (item) {
-            if (item.split(':').length !== 3) {
-                fail.push(item + ' 必须用冒号指定字段的类型')
-                return
+        param.tab.row = parseInt(param.tab.row, 10)
+        param.tab.defaultRow = parseInt(param.tab.defaultRow, 10)
+
+        //最大上线为6000条
+        if (param.tab.row > 6000) {
+            param.tab.row = 6000
+        }
+
+        if (isNaN(param.tab.row) || param.tab.row < 1) {
+            param.tab.row = 1
+            result.warning.push('row定义出现问题，默认将使用1')
+        }
+
+        if (isNaN(param.tab.defaultRow) || param.tab.defaultRow < 1) {
+            param.tab.defaultRow = 1
+            result.warning.push('defaultRow出现问题，默认将使用1')
+        }
+
+        if (param.tab.defaultRow > param.tab.row) {
+            param.tab.defaultRow = param.tab.row
+            result.warning.push('defaultRow不能大于row，已将defaultRow的值替换为row')
+        }
+
+        //检查字段的定义是否有错误
+        Object.keys(param.fields).forEach(function (key) {
+            var type = param.fields[key].type
+            if (!allowType.test(type)) {
+                fail.push('字段类型错误：' + type)
             }
-            item = item.split(':')
-            if (allowRe.test(item[0]) === false) {
-                fail.push(item[0] + ' 不符合字段类型，必须以汉字或英文字母开头，且不能包含标点符号')
-            }
-            if (allowType.test(item[1]) === false) {
-                fail.push(item + ' 包含不允许的字段类型')
+            if (!fieldRe.test(key)) {
+                fail.push('字段名称错误，必须以中文或英文字母开头：' + type)
             }
         })
-
-        //获取最大行数和默认行数
-        //获取标题信息
-        var row = item.match(/row:([^\s,)]+)/)
-        if (row) {
-            row = parseInt(RegExp.$1, 10)
-            if (isNaN(row) || row < 1 || row > 20001) {
-                fail.push('行数信息出错:-->' + item + '，只能大>1且<20001')
-            }
+        if (fail.length > 0) {
+            errResult.err.push({text: item, msg: fail})
         } else {
-            row = 1
-        }
-
-        var defaultRow = item.match(/defaultRow:([^\s,)]+)/)
-        if (defaultRow) {
-            defaultRow = parseInt(RegExp.$1, 10)
-            if (isNaN(defaultRow) || defaultRow < 1 || defaultRow > 20001) {
-                fail.push('总行数信息出错:-->' + item + '，只能大>1且<20001')
-            }
-        } else {
-            defaultRow = 1
-        }
-
-        if (defaultRow > row) {
-            fail.push('行数不能超过defaultRow')
-        }
-
-        //获取ID参数
-
-        //如果所有效验通过，则进行存储
-        if (fail.length < 1) {
-            result.push({
-                group: group,
-                title: title,
-                field: field,
-                row: row,
-                defaultRow: defaultRow,
-                tpl: item
-            })
-        } else {
-            err.push(fail + ',原文本为：' + item)
+            result.arr.push(param)
         }
     })
-    if (err.length > 0) {
-        console.log('语法存在错误：' + err)
-        throw err
+
+    if (result.warning.length < 1) delete result.warning
+
+    console.log(JSON.stringify(result))
+
+    return errResult.err.length > 0 ? errResult : result;
+}
+
+exports.searchParam = function (content) {
+    var paramArr = content.match(/\{(.+)?\}/)[1]
+    var fields = {}
+    var tab = {}
+    if (paramArr && paramArr[1]) {
+        content.match(/\{(.+)?\}/)[1].split(',').forEach(function (item) {
+            item = item.split(':')
+            if (item.length === 2) {
+                tab[item[0]] = item[1]
+            } else if (item.length === 3) {
+                fields[item[0]] = {
+                    tip: item[1],
+                    type: item[2]
+                }
+            }
+        })
+        return {
+            tab: tab,
+            fields: fields
+        }
     } else {
-        return result
+        throw 'searchParam时出现错误'
     }
 }
