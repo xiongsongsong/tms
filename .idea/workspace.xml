@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d76330a8-d241-46b4-a3ad-92170ef376c4" name="Default" comment="可以实现模板的版本控制了">
+    <list default="true" id="d76330a8-d241-46b4-a3ad-92170ef376c4" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/home/compile-template.js" afterPath="$PROJECT_DIR$/assets/home/compile-template.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/tpl/edit.js" afterPath="$PROJECT_DIR$/routes/tpl/edit.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/tpl/helper.js" afterPath="$PROJECT_DIR$/routes/tpl/helper.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -26,46 +28,37 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="new.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="new.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/tpl/new.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="5" selection-start="908" selection-end="908" vertical-scroll-proportion="0.750469" vertical-offset="360" max-vertical-offset="1976">
+            <state line="42" column="0" selection-start="910" selection-end="910" vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="1976">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="helper.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="helper.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/tpl/helper.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="111" column="0" selection-start="3471" selection-end="3471" vertical-scroll-proportion="0.0" vertical-offset="1710" max-vertical-offset="2736">
+            <state line="23" column="44" selection-start="900" selection-end="900" vertical-scroll-proportion="0.43846154" vertical-offset="209" max-vertical-offset="2698">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+      <file leaf-file-name="compile-template.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/home/compile-template.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="0" selection-start="7" selection-end="7" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="133">
+            <state line="11" column="27" selection-start="274" selection-end="274" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="532">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="layout.jade" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/layout.jade">
+      <file leaf-file-name="edit.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/tpl/edit.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="32" selection-start="314" selection-end="314" vertical-scroll-proportion="-8.36" vertical-offset="0" max-vertical-offset="722">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.jade" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/index.jade">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="10" selection-start="1025" selection-end="1025" vertical-scroll-proportion="-11.2" vertical-offset="138" max-vertical-offset="646">
+            <state line="59" column="0" selection-start="1363" selection-end="1363" vertical-scroll-proportion="0.0" vertical-offset="794" max-vertical-offset="1919">
               <folding />
             </state>
           </provider>
@@ -93,7 +86,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/test2.html" />
         <option value="$PROJECT_DIR$/routes/design/index.js" />
         <option value="$PROJECT_DIR$/views/design/design.jade" />
         <option value="$PROJECT_DIR$/routes/compile-template.js" />
@@ -102,13 +94,14 @@
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/assets/design/init.js" />
         <option value="$PROJECT_DIR$/views/tpl/edit-source.jade" />
-        <option value="$PROJECT_DIR$/routes/tpl/edit.js" />
         <option value="$PROJECT_DIR$/test.html" />
         <option value="$PROJECT_DIR$/abc.html" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/views/index.jade" />
-        <option value="$PROJECT_DIR$/routes/tpl/helper.js" />
+        <option value="$PROJECT_DIR$/assets/home/compile-template.js" />
         <option value="$PROJECT_DIR$/routes/tpl/new.js" />
+        <option value="$PROJECT_DIR$/routes/tpl/edit.js" />
+        <option value="$PROJECT_DIR$/routes/tpl/helper.js" />
       </list>
     </option>
   </component>
@@ -208,6 +201,38 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="home" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -297,30 +322,38 @@
       <created>1382434615469</created>
       <updated>1382434615469</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="fix bug">
+      <created>1382434741565</created>
+      <updated>1382434741565</updated>
+    </task>
+    <task id="LOCAL-00004" summary="设置最大row行数">
+      <created>1382439439668</created>
+      <updated>1382439439668</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32871974" sideWeight="0.49960223" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32938388" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Mongo Runner" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32938388" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23933649" sideWeight="0.14019449" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32938388" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.089141004" sideWeight="0.6635071" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31685576" sideWeight="0.7606635" order="1" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23933649" sideWeight="0.14019449" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Mongo Runner" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32938388" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31685576" sideWeight="0.6635071" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3364929" sideWeight="0.8598055" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32938388" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -357,7 +390,9 @@
     </option>
     <MESSAGE value="可以实现模板的版本控制了" />
     <MESSAGE value="将模板定义由括号更改为花括号" />
-    <option name="LAST_COMMIT_MESSAGE" value="将模板定义由括号更改为花括号" />
+    <MESSAGE value="fix bug" />
+    <MESSAGE value="设置最大row行数" />
+    <option name="LAST_COMMIT_MESSAGE" value="设置最大row行数" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -377,11 +412,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/home/compile-template.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="23" selection-start="206" selection-end="206" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="532" />
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.WebStorm7/system/extLibs/nodejs-v0.10.21-src/core-modules-sources/lib/crypto.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="11704" />
@@ -390,11 +420,6 @@
     <entry file="file://$PROJECT_DIR$/views/tpl/edit-source.jade">
       <provider selected="true" editor-type-id="text-editor">
         <state line="23" column="33" selection-start="758" selection-end="758" vertical-scroll-proportion="0.0" vertical-offset="437" max-vertical-offset="551" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/tpl/edit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="74" column="35" selection-start="1624" selection-end="1624" vertical-scroll-proportion="0.0" vertical-offset="1102" max-vertical-offset="1919" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/tpl/index.js">
@@ -443,16 +468,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/tpl/helper.js">
+    <entry file="file://$PROJECT_DIR$/assets/home/compile-template.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="111" column="0" selection-start="3471" selection-end="3471" vertical-scroll-proportion="0.0" vertical-offset="1710" max-vertical-offset="2736">
+        <state line="11" column="27" selection-start="274" selection-end="274" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="532">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/tpl/new.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="5" selection-start="908" selection-end="908" vertical-scroll-proportion="0.750469" vertical-offset="360" max-vertical-offset="1976">
+        <state line="42" column="0" selection-start="910" selection-end="910" vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="1976">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/tpl/edit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="59" column="0" selection-start="1363" selection-end="1363" vertical-scroll-proportion="0.0" vertical-offset="794" max-vertical-offset="1919">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/tpl/helper.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="44" selection-start="900" selection-end="900" vertical-scroll-proportion="0.43846154" vertical-offset="209" max-vertical-offset="2698">
           <folding />
         </state>
       </provider>

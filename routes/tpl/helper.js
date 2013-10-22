@@ -20,17 +20,13 @@ exports.checkId = function (content, random) {
                 //随机因子+时间戳，保证生成的sha1效验和是唯一的
                 newId.update(item + (typeof item === 'string' ? random : Math.random().toString()) + Date.now() + Math.random());
                 //生成一个新id，在这之前删除掉错误的id
-                content = content.replace(item, item.replace(/[\s\r\n]/gmi, '')
-                    .replace(/id[\s]*:[\s]*[^,}\s]+/gi, '')
+                content = content.replace(item, item.replace(/id[\s]*:[\s]*[^,}\s]+/gi, '')
                     .replace(/(?:,,)/g, ',')
                     .replace(/,\}/g, '}')
                     .replace(/\}$/, ',id:' + newId.digest('hex') + '}'))
-            } else {
-                content = content.replace(item, item.replace(/[\s\r\n]/gm, ''))
             }
         })
     }
-    // console.log(content)
     return content
 }
 
@@ -61,12 +57,13 @@ exports.checkTemplate = function (content) {
     tag.forEach(function (item) {
         var fail = []
         var param = exports.searchParam(item)
-        if (!param.tab.group) {
+        if (param.tab.group === undefined) {
             fail.push('没找到group定义')
         }
-        if (!param.tab.title) {
+        if (param.tab.title === undefined) {
             fail.push('没找到title定义')
         }
+        console.log(param.tab.group, param.tab.title)
 
         param.tab.row = parseInt(param.tab.row, 10)
         param.tab.defaultRow = parseInt(param.tab.defaultRow, 10)
@@ -93,48 +90,47 @@ exports.checkTemplate = function (content) {
         }
 
         //检查字段的定义是否有错误
-        Object.keys(param.fields).forEach(function (key) {
+        var keys = Object.keys(param.fields)
+        keys.forEach(function (key) {
             var type = param.fields[key].type
             if (!allowType.test(type)) {
                 fail.push('字段类型错误：' + type)
             }
-            if (!fieldRe.test(key)) {
+            if (!fieldRe.test(type)) {
                 fail.push('字段名称错误，必须以中文或英文字母开头：' + type)
             }
         })
+
+        if (keys.length < 1) fail.push('未定义任何字段信息')
+
         if (fail.length > 0) {
             errResult.err.push({text: item, msg: fail})
         } else {
             result.arr.push(param)
         }
+
     })
 
     if (result.warning.length < 1) delete result.warning
-
     return errResult.err.length > 0 ? errResult : result;
 }
 
 exports.searchParam = function (content) {
-    var paramArr = content.match(/\{(.+)?\}/)[1]
     var fields = {}
     var tab = {}
-    if (paramArr && paramArr[1]) {
-        content.match(/\{(.+)?\}/)[1].split(',').forEach(function (item) {
-            item = item.split(':')
-            if (item.length === 2) {
-                tab[item[0]] = item[1]
-            } else if (item.length === 3) {
-                fields[item[0]] = {
-                    tip: item[1],
-                    type: item[2]
-                }
+    content.match(/\{([\s\S]+?)\}/)[1].split(',').forEach(function (item) {
+        item = item.replace(/[\r\n]/gm, '').split(':')
+        if (item.length === 2) {
+            tab[item[0]] = item[1]
+        } else if (item.length === 3) {
+            fields[item[0]] = {
+                tip: item[1],
+                type: item[2]
             }
-        })
-        return {
-            tab: tab,
-            fields: fields
         }
-    } else {
-        throw 'searchParam时出现错误'
+    })
+    return {
+        tab: tab,
+        fields: fields
     }
 }

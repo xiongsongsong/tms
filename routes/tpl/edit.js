@@ -36,7 +36,6 @@ app.post('/edit/update-source', function (req, res) {
     var pageUrl = req.body['page_url']
     var err = []
 
-
     try {
         var page_id = db.mongodb.ObjectID(req.body.page_id)
     } catch (e) {
@@ -57,10 +56,11 @@ app.post('/edit/update-source', function (req, res) {
     }
 
     //首先检测模板合法性，如果模板存在语法错误，则直接告诉client进行修改
-    try {
-        helper.checkTemplate(content)
-    } catch (e) {
-        res.json({status: -3, err: e})
+        var eachResult = helper.checkTemplate(content)
+
+
+    if (eachResult.err) {
+        res.json({err: eachResult.err})
         return
     }
 
@@ -74,7 +74,7 @@ app.post('/edit/update-source', function (req, res) {
     var tpl = new db.Collection(db.Client, 'tpl')
     var tplSource = new db.Collection(db.Client, 'tpl-source')
 
-    tpl.findOne({_id: page_id}, {_id: 1, page_name: 1,page_url:1}, function (err, docs) {
+    tpl.findOne({_id: page_id}, {_id: 1, page_name: 1, page_url: 1}, function (err, docs) {
         if (!err && docs) {
             tplSource.insert({
                 page_id: page_id,
