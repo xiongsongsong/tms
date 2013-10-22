@@ -109,8 +109,6 @@ exports.checkTemplate = function (content) {
 
     if (result.warning.length < 1) delete result.warning
 
-    console.log(JSON.stringify(result))
-
     return errResult.err.length > 0 ? errResult : result;
 }
 
