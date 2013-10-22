@@ -1,0 +1,22 @@
+extends ../layout
+block content
+    form(name="update-source",action="/update-data",method="post")
+        input(type="hidden",name="page_id",value="#{docs.page_id}")
+        table
+            tr
+                th 页面名称
+                td
+                    input(type="text",name="page_name",value="#{docs.page_name}")
+            tr
+                th 页面地址
+                td
+                    input(type="text",name="page_url",value="#{docs.page_url}",readonly,size="100")
+            tr
+                th 页面源码
+                td
+                    textarea(rows="20",name="content",cols="100")=docs.source
+
+    pre=result
+block js
+    script.
+        seajs.use('/design/init')

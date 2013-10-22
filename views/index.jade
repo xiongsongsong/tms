@@ -21,7 +21,9 @@ block content
     ul
     -docs.forEach(function(item){
         li
-            a(href="/edit/#{item._id}")=item.page_name
+            a(href="/edit/source/#{item._id}")=item.page_name
+            | |
+            a(href="/edit/data/#{item._id}") 编辑数据
     -})
 
 block js

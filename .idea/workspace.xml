@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d76330a8-d241-46b4-a3ad-92170ef376c4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/tpl/helper.js" afterPath="$PROJECT_DIR$/routes/tpl/helper.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/tpl/new.js" afterPath="$PROJECT_DIR$/routes/tpl/new.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/tpl/edit-data.jade" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/routes/tpl/edit-data.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/index.jade" afterPath="$PROJECT_DIR$/views/index.jade" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/tpl/index.js" afterPath="$PROJECT_DIR$/routes/tpl/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MOVED" beforePath="D:\tms\routes\tpl\edit.js" afterPath="$PROJECT_DIR$/routes/tpl/edit-source.js" />
     </list>
     <ignored path="tms.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,37 +30,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="new.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/routes/tpl/new.js">
+      <file leaf-file-name="edit-data.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/tpl/edit-data.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="86" column="12" selection-start="2766" selection-end="2766" vertical-scroll-proportion="0.61350846" vertical-offset="1307" max-vertical-offset="1957">
-              <folding />
+            <state line="25" column="0" selection-start="666" selection-end="666" vertical-scroll-proportion="0.0" vertical-offset="37" max-vertical-offset="646">
+              <folding>
+                <element signature="e#0#37#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="helper.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/tpl/helper.js">
+      <file leaf-file-name="edit-data.jade" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/views/tpl/edit-data.jade">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="65" column="0" selection-start="2043" selection-end="2043" vertical-scroll-proportion="0.0" vertical-offset="1045" max-vertical-offset="2679">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="compile-template.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/home/compile-template.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="19" selection-start="292" selection-end="294" vertical-scroll-proportion="-8.16" vertical-offset="24" max-vertical-offset="532">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="edit.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/tpl/edit.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="58" column="23" selection-start="1330" selection-end="1331" vertical-scroll-proportion="-6.76" vertical-offset="933" max-vertical-offset="1919">
+            <state line="21" column="20" selection-start="672" selection-end="672" vertical-scroll-proportion="0.78543305" vertical-offset="0" max-vertical-offset="513">
               <folding />
             </state>
           </provider>
@@ -85,22 +72,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/routes/design/index.js" />
-        <option value="$PROJECT_DIR$/views/design/design.jade" />
         <option value="$PROJECT_DIR$/routes/compile-template.js" />
         <option value="$PROJECT_DIR$/routes/index.js" />
-        <option value="$PROJECT_DIR$/routes/tpl/index.js" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/assets/design/init.js" />
         <option value="$PROJECT_DIR$/views/tpl/edit-source.jade" />
         <option value="$PROJECT_DIR$/test.html" />
         <option value="$PROJECT_DIR$/abc.html" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/views/index.jade" />
         <option value="$PROJECT_DIR$/assets/home/compile-template.js" />
+        <option value="$PROJECT_DIR$/routes/tpl/new.js" />
         <option value="$PROJECT_DIR$/routes/tpl/edit.js" />
         <option value="$PROJECT_DIR$/routes/tpl/helper.js" />
-        <option value="$PROJECT_DIR$/routes/tpl/new.js" />
+        <option value="$PROJECT_DIR$/views/index.jade" />
+        <option value="$PROJECT_DIR$/routes/tpl/index.js" />
+        <option value="$PROJECT_DIR$/routes/tpl/edit-data.js" />
+        <option value="$PROJECT_DIR$/views/tpl/edit-data.jade" />
       </list>
     </option>
   </component>
@@ -165,6 +152,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tpl" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -249,6 +254,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\tms\views\tpl" />
       <recent name="D:\tms" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -333,7 +339,11 @@
       <created>1382443398397</created>
       <updated>1382443398397</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="删除一些不必要的console">
+      <created>1382443528036</created>
+      <updated>1382443528036</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -396,49 +406,21 @@
     <MESSAGE value="fix bug" />
     <MESSAGE value="设置最大row行数" />
     <MESSAGE value="对模板尽量做最少的改动。" />
-    <option name="LAST_COMMIT_MESSAGE" value="对模板尽量做最少的改动。" />
+    <MESSAGE value="删除一些不必要的console" />
+    <option name="LAST_COMMIT_MESSAGE" value="删除一些不必要的console" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/routes/tpl/helper.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="30" selection-start="346" selection-end="346" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2736">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="7" selection-end="7" vertical-scroll-proportion="0.0" vertical-offset="19" max-vertical-offset="133">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.WebStorm7/system/extLibs/nodejs-v0.10.21-src/core-modules-sources/lib/crypto.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="11704" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/tpl/edit-source.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="33" selection-start="758" selection-end="758" vertical-scroll-proportion="0.0" vertical-offset="437" max-vertical-offset="551" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/tpl/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="0" selection-start="142" selection-end="142" vertical-scroll-proportion="0.30721393" vertical-offset="0" max-vertical-offset="804" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/design/init.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="35" selection-start="221" selection-end="240" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="437" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="16" selection-start="402" selection-end="402" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="437" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
@@ -465,37 +447,74 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/index.jade">
+    <entry file="file://$PROJECT_DIR$/routes/tpl/new.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="10" selection-start="1025" selection-end="1025" vertical-scroll-proportion="-11.2" vertical-offset="138" max-vertical-offset="646">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/tpl/edit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="23" selection-start="1330" selection-end="1331" vertical-scroll-proportion="-6.76" vertical-offset="933" max-vertical-offset="1919">
+        <state line="85" column="23" selection-start="2746" selection-end="2746" vertical-scroll-proportion="0.8812616" vertical-offset="1140" max-vertical-offset="1957">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/home/compile-template.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="19" selection-start="292" selection-end="294" vertical-scroll-proportion="-8.16" vertical-offset="24" max-vertical-offset="532">
+        <state line="12" column="19" selection-start="292" selection-end="294" vertical-scroll-proportion="0.4085603" vertical-offset="18" max-vertical-offset="532">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="13" selection-start="399" selection-end="399" vertical-scroll-proportion="0.60600376" vertical-offset="0" max-vertical-offset="533">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/tpl/edit-source.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="33" selection-start="758" selection-end="758" vertical-scroll-proportion="0.8366142" vertical-offset="12" max-vertical-offset="551">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/tpl/helper.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="0" selection-start="2043" selection-end="2043" vertical-scroll-proportion="0.0" vertical-offset="1045" max-vertical-offset="2679">
+        <state line="103" column="0" selection-start="3282" selection-end="3282" vertical-scroll-proportion="3.7634616" vertical-offset="0" max-vertical-offset="2679">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/tpl/new.js">
+    <entry file="file://$PROJECT_DIR$/views/index.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="86" column="12" selection-start="2766" selection-end="2766" vertical-scroll-proportion="0.61350846" vertical-offset="1307" max-vertical-offset="1957">
+        <state line="24" column="15" selection-start="1103" selection-end="1103" vertical-scroll-proportion="-15.48" vertical-offset="69" max-vertical-offset="684">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/tpl/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="24" selection-start="148" selection-end="148" vertical-scroll-proportion="0.42776737" vertical-offset="0" max-vertical-offset="533">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/tpl/edit-source.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="8" selection-start="641" selection-end="641" vertical-scroll-proportion="-0.03564728" vertical-offset="570" max-vertical-offset="1919">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/tpl/edit-data.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="0" selection-start="666" selection-end="666" vertical-scroll-proportion="0.0" vertical-offset="37" max-vertical-offset="646">
+          <folding>
+            <element signature="e#0#37#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/tpl/edit-data.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="20" selection-start="672" selection-end="672" vertical-scroll-proportion="0.78543305" vertical-offset="0" max-vertical-offset="513">
           <folding />
         </state>
       </provider>

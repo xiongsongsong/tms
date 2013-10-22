@@ -7,7 +7,7 @@ var app = require('app')
 var db = require('db')
 var helper = require('./helper')
 
-app.get(/\/edit\/(.+)/, function (req, res) {
+app.get(/\/edit\/source\/(.+)/, function (req, res) {
     var ObjectId = db.mongodb.ObjectID
     try {
         var id = ObjectId(req.params[0])
