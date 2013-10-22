@@ -7,6 +7,7 @@ var allowType = /^(string|img)$/i
 var tagRe = /#each[\s]*\{[\s\S]+?\}/gmi
 var idRe = /id[\s]*:[\s]*[a-z0-9]{40}/
 var crypto = require('crypto')
+var maxNum = 6000
 
 //检查并修正错误的id
 exports.checkId = function (content, random) {
@@ -71,8 +72,9 @@ exports.checkTemplate = function (content) {
         param.tab.defaultRow = parseInt(param.tab.defaultRow, 10)
 
         //最大上线为6000条
-        if (param.tab.row > 6000) {
-            param.tab.row = 6000
+        if (param.tab.row > maxNum) {
+            param.tab.row = maxNum
+            result.warning.push('至多支持' + maxNum + '条数据，已更改为' + maxNum + '条')
         }
 
         if (isNaN(param.tab.row) || param.tab.row < 1) {
