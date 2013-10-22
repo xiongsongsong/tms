@@ -65,7 +65,6 @@ app.post('/compile-template', function (req, res) {
                         status: 1,
                         ts: Date.now()
                     }, {}, function (err, docs) {
-                        console.log(docs)
                         if (!err && docs && docs[0]) {
                             //开始存储模板文件
                             tplSource.insert({

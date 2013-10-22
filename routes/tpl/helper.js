@@ -63,7 +63,6 @@ exports.checkTemplate = function (content) {
         if (param.tab.title === undefined) {
             fail.push('没找到title定义')
         }
-        console.log(param.tab.group, param.tab.title)
 
         param.tab.row = parseInt(param.tab.row, 10)
         param.tab.defaultRow = parseInt(param.tab.defaultRow, 10)
