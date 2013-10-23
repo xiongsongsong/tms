@@ -120,11 +120,11 @@ exports.searchParam = function (content) {
     content.match(/\{([\s\S]+?)\}/)[1].split(',').forEach(function (item) {
         item = item.replace(/[\r\n]/gm, '').split(':')
         if (item.length === 2) {
-            tab[item[0]] = item[1]
+            tab[item[0].trim()] = item[1].trim()
         } else if (item.length === 3) {
-            fields[item[0]] = {
-                tip: item[1],
-                type: item[2]
+            fields[item[0].trim()] = {
+                tip: item[1].trim(),
+                type: item[2].trim()
             }
         }
     })

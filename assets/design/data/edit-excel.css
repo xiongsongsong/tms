@@ -1,0 +1,38 @@
+#tab-area li {
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 28px;
+}
+
+#tab-area li.active {
+    background: #cfc;
+}
+
+.unit {
+    border: solid 1px green;
+    padding: 12px;
+    margin: 12px;
+}
+
+.unit h2 {
+    font-size: 16px;
+    background: #cfc;
+    padding: 12px;
+    font-weight: bold;
+}
+
+ul.field {
+    white-space: nowrap;
+}
+
+ul.field li {
+    display: inline-block;
+    background: #eee;
+    padding: 12px 0;
+    text-align: center;
+}
+
+.J-row {
+    height: 30px;
+    border-bottom: solid 1px #ccc
+}

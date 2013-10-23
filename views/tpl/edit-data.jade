@@ -2,7 +2,7 @@ extends ../layout
 block content
     form(name="update-source",action="/update-data",method="post")
         input(type="hidden",name="page_id",value="#{docs.page_id}")
-        table
+        table(style="display:none")
             tr
                 th 页面名称
                 td
@@ -15,8 +15,8 @@ block content
                 th 页面源码
                 td
                     textarea(rows="20",name="content",cols="100")=docs.source
-
-    pre=result
+    form(action="/save/data",method="post")#editFormWrapper
 block js
     script.
-        seajs.use('/design/init')
+        var cf=!{result}
+        seajs.use('/design/data/init')

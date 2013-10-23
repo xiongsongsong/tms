@@ -20,7 +20,6 @@ app.get(/\/edit\/data\/(.+)/, function (req, res) {
         ['ts', -1]
     ]}, function (err, docs) {
         if (!err && docs) {
-
             //开始获取模板的编辑数据
             var result = helper.checkTemplate(docs.source)
             res.render('tpl/edit-data', {docs: docs, result: JSON.stringify(result, undefined, '    ')})
