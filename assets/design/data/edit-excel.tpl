@@ -8,6 +8,7 @@
             </ul>
         </div>
         <div class="excel-container">
+            <div class="J-input"><input type="text"></div>
             #js for(var __row=0;__row< item.row;__row++){ #end
             <div data-row="#{__row}" class="J-row"></div>
             #js } #end

@@ -74,12 +74,14 @@ define(function (require, exports, module) {
     function changeFieldsWidth() {
         var $ul = $container.find(':visible[data-group] ul.field')
         $ul.each(function (index, item) {
-            console.log(index, item)
             var $li = $(item).find('li')
             $li.width(parseInt(item.offsetWidth / $(item).find('li').size(), 10))
         })
     }
 
     $(window).on('resize', changeFieldsWidth)
+
+    //处理具体的编辑业务
+    require('./edit-excel')
 
 })
