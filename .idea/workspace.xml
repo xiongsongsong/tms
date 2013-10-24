@@ -1,21 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d76330a8-d241-46b4-a3ad-92170ef376c4" name="Default" comment="能够显示基本的group和title信息了">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/design/data/edit-excel.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/design/data/edit-excel.tpl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/design/data/edit-tpl.tpl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/stylesheets/global.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/design/data/init.js" />
+    <list default="true" id="d76330a8-d241-46b4-a3ad-92170ef376c4" name="Default" comment="">
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\tms\assets\stylesheets\style.styl" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/tpl/edit-data.jade" afterPath="$PROJECT_DIR$/views/tpl/edit-data.jade" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/tpl/edit-data.js" afterPath="$PROJECT_DIR$/routes/tpl/edit-data.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/tpl/helper.js" afterPath="$PROJECT_DIR$/routes/tpl/helper.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/design/init.js" afterPath="$PROJECT_DIR$/assets/design/init.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/layout.jade" afterPath="$PROJECT_DIR$/views/layout.jade" />
-      <change type="MOVED" beforePath="D:\tms\assets\stylesheets\style.css" afterPath="$PROJECT_DIR$/assets/stylesheets/reset.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/design/data/edit-excel.css" afterPath="$PROJECT_DIR$/assets/design/data/edit-excel.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/design/data/edit-excel.tpl" afterPath="$PROJECT_DIR$/assets/design/data/edit-excel.tpl" />
     </list>
     <ignored path="tms.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,7 +31,7 @@
       <file leaf-file-name="init.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/design/init.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="0" selection-start="329" selection-end="329" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="361">
+            <state line="13" column="0" selection-start="329" selection-end="329" vertical-scroll-proportion="0.0" vertical-offset="247" max-vertical-offset="361">
               <folding />
             </state>
           </provider>
@@ -50,10 +40,26 @@
       <file leaf-file-name="init.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/design/data/init.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="78" column="47" selection-start="2366" selection-end="2366" vertical-scroll-proportion="0.0" vertical-offset="874" max-vertical-offset="1691">
-              <folding>
-                <element signature="e#0#37#0" expanded="false" />
-              </folding>
+            <state line="66" column="38" selection-start="1980" selection-end="1980" vertical-scroll-proportion="0.0" vertical-offset="1196" max-vertical-offset="1729">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="edit-excel.tpl" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/design/data/edit-excel.tpl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6" column="113" selection-start="339" selection-end="339" vertical-scroll-proportion="-4.071429" vertical-offset="0" max-vertical-offset="418">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="edit-excel.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/design/data/edit-excel.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="8" column="1" selection-start="135" selection-end="135" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1634">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -61,7 +67,7 @@
       <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="7" selection-start="14" selection-end="14" vertical-scroll-proportion="0.023255814" vertical-offset="0" max-vertical-offset="817">
+            <state line="1" column="0" selection-start="7" selection-end="7" vertical-scroll-proportion="0.023255814" vertical-offset="0" max-vertical-offset="817">
               <folding />
             </state>
           </provider>
@@ -99,12 +105,12 @@
         <option value="$PROJECT_DIR$/views/tpl/edit-data.jade" />
         <option value="$PROJECT_DIR$/views/layout.jade" />
         <option value="$PROJECT_DIR$/assets/stylesheets/global.css" />
-        <option value="$PROJECT_DIR$/assets/design/data/edit-excel.tpl" />
-        <option value="$PROJECT_DIR$/assets/design/data/edit-excel.css" />
         <option value="$PROJECT_DIR$/test.html" />
         <option value="$PROJECT_DIR$/assets/design/init.js" />
         <option value="$PROJECT_DIR$/assets/design/data/init.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/assets/design/data/edit-excel.tpl" />
+        <option value="$PROJECT_DIR$/assets/design/data/edit-excel.css" />
       </list>
     </option>
   </component>
@@ -140,7 +146,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -265,18 +270,19 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="options.lastSelected" value="preferences.fileTypes" />
     <property name="recentsLimit" value="5" />
+    <property name="options.lastSelected" value="preferences.fileTypes" />
     <property name="last_opened_file_path" value="$USER_HOME$/Desktop" />
     <property name="FullScreen" value="false" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -290,6 +296,14 @@
     </key>
   </component>
   <component name="RunManager" selected="Node.js.app.js">
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <option name="VMOptions" />
+      <option name="arguments" />
+      <option name="filePath" />
+      <option name="scope" value="ALL" />
+      <option name="testName" />
+      <method />
+    </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -298,14 +312,6 @@
       <option name="saveOutputToFile" value="false" />
       <option name="showConsoleOnStdErr" value="false" />
       <option name="showConsoleOnStdOut" value="false" />
-      <method />
-    </configuration>
-    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
-      <option name="VMOptions" />
-      <option name="arguments" />
-      <option name="filePath" />
-      <option name="scope" value="ALL" />
-      <option name="testName" />
       <method />
     </configuration>
     <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" singleton="true" config-file="">
@@ -375,29 +381,33 @@
       <created>1382444792062</created>
       <updated>1382444792062</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="能够显示基本的group和title信息了&#10;&#10;git rm --cached FILENAME 可以取消跟踪但不删除某个文件">
+      <created>1382532398699</created>
+      <updated>1382532398699</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32871974" sideWeight="0.49960223" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32819906" sideWeight="0.49960223" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32938388" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32938388" sideWeight="0.78038895" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Mongo Runner" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32938388" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3364929" sideWeight="0.14019449" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32938388" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.08910103" sideWeight="0.6635071" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31685576" sideWeight="0.6635071" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31685576" sideWeight="0.6635071" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3364929" sideWeight="0.14019449" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Mongo Runner" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32938388" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3364929" sideWeight="0.8598055" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32938388" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32938388" sideWeight="0.78038895" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -405,15 +415,15 @@
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32871974" sideWeight="0.49960223" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32819906" sideWeight="0.49960223" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32938388" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32938388" sideWeight="0.78038895" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Mongo Runner" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32938388" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3364929" sideWeight="0.14019449" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3364929" sideWeight="0.14019449" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Mongo Runner" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32938388" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32938388" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -440,7 +450,8 @@
     <MESSAGE value="对模板尽量做最少的改动。" />
     <MESSAGE value="删除一些不必要的console" />
     <MESSAGE value="明天开始制作form，并准备填充数据" />
-    <option name="LAST_COMMIT_MESSAGE" value="明天开始制作form，并准备填充数据" />
+    <MESSAGE value="能够显示基本的group和title信息了&#10;&#10;git rm --cached FILENAME 可以取消跟踪但不删除某个文件" />
+    <option name="LAST_COMMIT_MESSAGE" value="能够显示基本的group和title信息了&#10;&#10;git rm --cached FILENAME 可以取消跟踪但不删除某个文件" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -458,85 +469,47 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/tpl/edit-data.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="2" selection-start="833" selection-end="833" vertical-scroll-proportion="0.7861163" vertical-offset="132" max-vertical-offset="665">
-          <folding />
-        </state>
+        <state line="29" column="2" selection-start="833" selection-end="833" vertical-scroll-proportion="0.7861163" vertical-offset="132" max-vertical-offset="665" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/tpl/helper.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="116" column="39" selection-start="3591" selection-end="3598" vertical-scroll-proportion="0.742115" vertical-offset="1804" max-vertical-offset="2679">
-          <folding />
-        </state>
+        <state line="116" column="39" selection-start="3591" selection-end="3598" vertical-scroll-proportion="0.742115" vertical-offset="1804" max-vertical-offset="2679" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/layout.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="56" selection-start="163" selection-end="163" vertical-scroll-proportion="0.1848249" vertical-offset="0" max-vertical-offset="741">
-          <folding />
-        </state>
+        <state line="5" column="56" selection-start="163" selection-end="163" vertical-scroll-proportion="0.1848249" vertical-offset="0" max-vertical-offset="741" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/stylesheets/reset.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="27" selection-start="172" selection-end="172" vertical-scroll-proportion="0.25285172" vertical-offset="0" max-vertical-offset="526">
-          <folding />
-        </state>
+        <state line="7" column="27" selection-start="172" selection-end="172" vertical-scroll-proportion="0.25285172" vertical-offset="0" max-vertical-offset="526" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/tpl/edit-data.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="33" selection-start="200" selection-end="200" vertical-scroll-proportion="-3.04" vertical-offset="0" max-vertical-offset="532">
-          <folding />
-        </state>
+        <state line="4" column="33" selection-start="200" selection-end="200" vertical-scroll-proportion="-3.04" vertical-offset="0" max-vertical-offset="532" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/tpl/edit-source.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="33" selection-start="758" selection-end="758" vertical-scroll-proportion="-17.0" vertical-offset="12" max-vertical-offset="551">
-          <folding />
-        </state>
+        <state line="23" column="33" selection-start="758" selection-end="758" vertical-scroll-proportion="-17.0" vertical-offset="12" max-vertical-offset="551" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="118" column="42" selection-start="3458" selection-end="3458" vertical-scroll-proportion="0.41237113" vertical-offset="1922" max-vertical-offset="4066">
-          <folding>
-            <element signature="n#style#0;n#div#2;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#iframe#0;n#div#2;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h1#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#iframe#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
+        <state line="118" column="42" selection-start="3458" selection-end="3458" vertical-scroll-proportion="0.41237113" vertical-offset="1922" max-vertical-offset="4066" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/stylesheets/global.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="1" selection-start="65" selection-end="65" vertical-scroll-proportion="0.069767445" vertical-offset="0" max-vertical-offset="817">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/design/data/edit-excel.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="22" selection-start="309" selection-end="309" vertical-scroll-proportion="0.44186047" vertical-offset="19" max-vertical-offset="836">
-          <folding />
-        </state>
+        <state line="3" column="1" selection-start="65" selection-end="65" vertical-scroll-proportion="0.069767445" vertical-offset="0" max-vertical-offset="817" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/design/data/edit-tpl.tpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="8" selection-start="8" selection-end="16" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="489">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/design/data/edit-excel.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="55" selection-start="238" selection-end="243" vertical-scroll-proportion="0.12040558" vertical-offset="0" max-vertical-offset="789">
-          <folding />
-        </state>
+        <state line="0" column="8" selection-start="8" selection-end="16" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="489" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/design/init.js">
@@ -548,16 +521,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/design/data/init.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="78" column="47" selection-start="2366" selection-end="2366" vertical-scroll-proportion="0.0" vertical-offset="874" max-vertical-offset="1691">
-          <folding>
-            <element signature="e#0#37#0" expanded="false" />
-          </folding>
+        <state line="66" column="38" selection-start="1980" selection-end="1980" vertical-scroll-proportion="0.0" vertical-offset="19" max-vertical-offset="1691">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/design/data/edit-excel.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="113" selection-start="339" selection-end="339" vertical-scroll-proportion="-4.071429" vertical-offset="0" max-vertical-offset="418">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/design/data/edit-excel.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="1" selection-start="135" selection-end="135" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1634">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="7" selection-start="14" selection-end="14" vertical-scroll-proportion="0.023255814" vertical-offset="0" max-vertical-offset="817">
+        <state line="1" column="0" selection-start="7" selection-end="7" vertical-scroll-proportion="0.023255814" vertical-offset="0" max-vertical-offset="817">
           <folding />
         </state>
       </provider>
