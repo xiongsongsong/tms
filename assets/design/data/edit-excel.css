@@ -56,7 +56,7 @@ ul.field li {
 
 .J-row {
     height: 30px;
-    border-bottom: solid 1px #ccc
+    border-bottom: solid 1px #ccc;
 }
 
 .excel {
@@ -64,6 +64,7 @@ ul.field li {
     padding-top: 38px;
     border: solid 1px #ccc;
     border-bottom: none;
+    font-family: simsun, sans-serif;
 }
 
 .excel-field {
@@ -74,7 +75,7 @@ ul.field li {
     height: 100%;
 }
 
-.excel-container {
+.excel-wrapper {
     position: relative;
     border-bottom: none;
 }
@@ -83,11 +84,14 @@ ul.field li {
     position: absolute;
     left: -999em;
     top: -999em;
-    border: solid 2px forestgreen;
-    margin-top: -3px;
-    margin-left: -3px;
-    box-shadow: 0 0 3px green;
-    border-radius: 3px;
+    border: solid 1px green;
+    margin-left: -1px;
+    margin-top: -1px;
+    box-shadow: inset 0 0 3px #080;
+    -webkit-transition: all .1s ease-in-out;
+    -moz-transition: all .1s ease-in-out;
+    -o-transition: all .1s ease-in-out;
+    transition: all .1s ease-in-out;
 }
 
 .J-input input {
