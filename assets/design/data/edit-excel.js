@@ -5,11 +5,20 @@
 define(function (require, exports, module) {
     var $container = $('#main-container')
 
-    $container.on('mousedown', 'div.J-row', function (ev) {
+
+    $container.on('select selectstart', function (ev) {
+        ev.preventDefault()
+    })
+
+
+    $container.on('mousedown', 'div.excel-trigger-area', function (ev) {
+
+        console.log('mousedown')
+
         var $currentTarget = $(ev.currentTarget);
         var $excel = $currentTarget.parents('div.excel')
-        var $inputWrapper = $currentTarget.parent().find('.J-input')
-        var allRow = $excel.find('.excel-wrapper')[0].getElementsByTagName('div')
+        var $inputWrapper = $excel.find('.J-input')
+        var allRow = $excel.find('.excel-container')[0].getElementsByTagName('div')
 
         //保存行数的引用
         $excel.data('allRow', allRow)
@@ -38,25 +47,36 @@ define(function (require, exports, module) {
             }
         }
 
-        //获取当前行数
+        //获取当前行号
+        var rowIndex = 0
+        for (i = 0; i < allRow.length; i++) {
+            if ($(allRow[i]).position().top + allRow[i].offsetHeight > ev.offsetY) {
+                rowIndex = i
+                break;
+            }
+        }
+
+        //首先将数据刷入textarea，才更新列的信息
+        if ($excel.data('position')) {
+            exports.updateData($excel);
+        }
 
         //存储字段的坐标，当前列，行信息
         $excel.data('position', {
             fieldsPosition: arr,
             colIndex: index,
-            rowIndex: 1
+            //获取点击的是第几行
+            rowIndex: rowIndex
         })
+
 
         //将输入框定位到正确的单元格
         $excel.data('inputFieldPosition', {
             left: arr[index][0],
-            top: position.top,
+            top: $(allRow[rowIndex]).position().top,
             width: arr[index][1] - arr[index][0],
-            height: $currentTarget.height()
+            height: allRow[rowIndex].offsetHeight
         })
-
-        //更新数据
-        exports.updateData($excel);
 
         //定位输入框到正确的位置
         exports.setInputFieldPosition($excel)
@@ -65,19 +85,37 @@ define(function (require, exports, module) {
 
     //定位输入框
     exports.setInputFieldPosition = function ($excel) {
-        console.log($excel.data('allRow').length)
         $excel.data('inputFieldWrapper').css($excel.data('inputFieldPosition'))
         setTimeout(function () {
             $excel.data('inputField').focus()
         }, 100)
+        //查看当前定位点，是否有数据，有则显示出来
+        //获取当前的列索引
+        var colIndex = $excel.data('position').colIndex
+        //获取到当前的行
+        var currentRow = $($excel.data('allRow')[($excel.data('position').rowIndex)])
+        $excel.data('inputField').val(currentRow.find('textarea[data-col-index=' + colIndex + ']').val())
     }
 
-    //保存单元格数据
+    //将输入框的数据刷入行中
     exports.updateData = function ($excel) {
+        var inputFieldPosition = $excel.data('inputFieldPosition')
+        var value = $excel.data('inputField').val()
 
+        //获取当前的列索引
+        var colIndex = $excel.data('position').colIndex
+        //获取到当前的行
+        var currentRow = $($excel.data('allRow')[($excel.data('position').rowIndex)])
+
+        //检测是否已经有填充数据
+        var $span = $('<textarea class="J-cell" data-col-index="' + colIndex + '" readonly>' + value + '</textarea>')
+        if (currentRow.find('textarea[data-col-index=' + colIndex + ']').size() < 1) {
+            $span.appendTo($excel.data('allRow')[($excel.data('position').rowIndex)]).css(inputFieldPosition)
+        } else {
+            currentRow.find('textarea[data-col-index=' + colIndex + ']').val(value)
+        }
+        $excel.data('inputField').val('')
     }
-
-
 })
 
 

@@ -8,12 +8,13 @@
             </ul>
         </div>
         <div class="excel-wrapper">
-            <div class="J-input"><input type="text"></div>
+            <div class="J-input"><input type="text" class="J-input-field"></div>
             <div class="excel-container">
                 #js for(var __row=0;__row< item.row;__row++){ #end
                 <div data-row="#{__row}" class="J-row"></div>
                 #js } #end
             </div>
+            <div class="excel-trigger-area"></div>
         </div>
     </div>
 </div>
