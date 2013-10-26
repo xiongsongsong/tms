@@ -13,8 +13,6 @@ define(function (require, exports, module) {
 
     $container.on('mousedown', 'div.excel-trigger-area', function (ev) {
 
-        console.log('mousedown')
-
         var $currentTarget = $(ev.currentTarget);
         var $excel = $currentTarget.parents('div.excel')
         var $inputWrapper = $excel.find('.J-input')
@@ -25,7 +23,7 @@ define(function (require, exports, module) {
 
         //保存$input，方便其他方法中调用
         $excel.data('inputFieldWrapper', $inputWrapper)
-        $excel.data('inputField', $inputWrapper.find('input'))
+        $excel.data('inputField', $inputWrapper.find('textarea'))
 
         var $fields = $excel.find('div.excel-field li.field')
         $excel.data('excelFields', $fields)

@@ -9,6 +9,11 @@ var idRe = /id[\s]*:[\s]*[a-z0-9]{40}/
 var crypto = require('crypto')
 var maxNum = 6000
 
+exports.maxNum = maxNum
+
+//最多允许有50个字段
+exports.maxFieldNum = 50
+
 //检查并修正错误的id
 exports.checkId = function (content, random) {
     var tag = content.match(tagRe)

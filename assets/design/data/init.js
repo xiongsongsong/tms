@@ -84,4 +84,7 @@ define(function (require, exports, module) {
     //处理具体的编辑业务
     require('./edit-excel')
 
+    //保存数据
+    require('./save-data')
+
 })

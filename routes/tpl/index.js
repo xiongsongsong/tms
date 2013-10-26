@@ -4,7 +4,6 @@
 
 
 var app = require('app')
-var db = require('db')
 
 //新建模板
 require('./new')
@@ -14,4 +13,7 @@ require('./edit-source')
 
 //编辑模板数据
 require('./edit-data')
+
+//保存数据
+require('./save-data')
 

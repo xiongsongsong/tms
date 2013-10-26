@@ -1,5 +1,5 @@
 #each(item in fields)
-<div class="unit" data-row="#{item.row}" data-id="#{item.id}">
+<div class="unit">
     <div class="title"><h2>#{item.title}</h2></div>
     <div class="excel">
         <div class="excel-field">
@@ -8,8 +8,8 @@
             </ul>
         </div>
         <div class="excel-wrapper">
-            <div class="J-input"><input type="text" class="J-input-field"></div>
-            <div class="excel-container">
+            <div class="J-input"><textarea class="J-input-field"></textarea></div>
+            <div class="excel-container" data-row="#{item.row}" data-cols="#{item.fields.length}" data-id="#{item.id}">
                 #js for(var __row=0;__row< item.row;__row++){ #end
                 <div data-row="#{__row}" class="J-row"></div>
                 #js } #end
