@@ -41,6 +41,7 @@ define(function (require, exports, module) {
                 title: item.tab.title,
                 row: item.tab.row,
                 defaultRow: item.tab.defaultRow,
+                fieldsSum: S.keys(item.fields).join(','),
                 fields: S.map(S.keys(item.fields), function (key) {
                     return {
                         key: key,
@@ -67,6 +68,7 @@ define(function (require, exports, module) {
         S.each(cf.arr, function (item) {
             if (item.tab.group === group) fields.push(item)
         })
+        console.log(fields)
         return fields
     }
 

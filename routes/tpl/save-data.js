@@ -32,7 +32,6 @@ app.post('/save-data', function (req, res) {
         return
     }
 
-
     var transDate = []
 
     //验证每一个表格的错误
@@ -40,6 +39,7 @@ app.post('/save-data', function (req, res) {
         //验证是否合法的id序列
         if (idRe.test(item) === false) {
             delete json[item]
+            result.err.push('ID不符合规则')
             return
         }
         var colNum = json[item].colNum
@@ -50,10 +50,28 @@ app.post('/save-data', function (req, res) {
             return
         }
 
-        if (Array.isArray(json[item].data)) {
-            //检查数组长度是否符合字段要求
-            json[item].data = json[item].data.filter(function (arr) {
+        //判断字段定义的合法性
+        var fields = json[item].fields
+        if (!fields || fields.split(',').length !== colNum) {
+            delete json[item]
+            result.err.push('字段定义的个数不正确')
+            return
+        }
 
+        if (!fields.split(',').every(function (field) {
+            return helper.fieldRe.test(field)
+        })) {
+            delete json[item]
+            result.err.push('字段定义不合法-->' + fields)
+            return
+        }
+
+        fields = fields.split(',')
+
+        //如果以上信息都通过验证，则开始验证其中的数据
+        if (Array.isArray(json[item].data)) {
+            //过滤掉无效的数据
+            json[item].data = json[item].data.filter(function (arr) {
                 if (!Array.isArray(arr) || colNum !== arr.length) {
                     return false
                 }
@@ -75,6 +93,7 @@ app.post('/save-data', function (req, res) {
             if (json[item].data.length > 0) {
                 transDate.push({
                     id: item,
+                    fields: fields,
                     data: json[item].data,
                     ts: Date.now(),
                     owner_id: req.session._id
@@ -92,6 +111,7 @@ app.post('/save-data', function (req, res) {
         return
     }
 
+    //开始保存数据
     var data = new db.Collection(db.Client, 'data')
 
     data.insert(transDate, {w: 1}, function (err, docs) {

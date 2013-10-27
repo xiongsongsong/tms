@@ -21,10 +21,14 @@ define(function (require, exports, module) {
             var colNum = $item.data('cols')
 
             var $row = $item.find('div.J-row')
+
             result[$item.attr('data-id')] = {
                 colNum: colNum,
+                fields: $item.attr('data-field'),
                 data: []
             }
+
+            console.log($item.attr('data-field'))
 
             //开始循环获取数据
             $row.each(function (i, row) {
