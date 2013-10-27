@@ -17,3 +17,6 @@ require('./edit-data')
 //保存数据
 require('./save-data')
 
+//发布
+require('./publish')
+

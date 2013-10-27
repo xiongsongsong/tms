@@ -28,8 +28,6 @@ define(function (require, exports, module) {
                 data: []
             }
 
-            console.log($item.attr('data-field'))
-
             //开始循环获取数据
             $row.each(function (i, row) {
                 var $row = $(row)

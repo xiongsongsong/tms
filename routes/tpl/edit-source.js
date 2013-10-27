@@ -56,7 +56,7 @@ app.post('/edit/update-source', function (req, res) {
     }
 
     //首先检测模板合法性，如果模板存在语法错误，则直接告诉client进行修改
-        var eachResult = helper.checkTemplate(content)
+    var eachResult = helper.checkTemplate(content)
 
 
     if (eachResult.err) {

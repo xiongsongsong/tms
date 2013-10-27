@@ -9,10 +9,9 @@ var idRe = /id[\s]*:[\s]*[a-z0-9]{40}/
 var crypto = require('crypto')
 var maxNum = 6000
 
+exports.tagRe = tagRe
 exports.fieldRe = fieldRe
-
 exports.maxNum = maxNum
-
 //最多允许有50个字段
 exports.maxFieldNum = 50
 
@@ -70,7 +69,6 @@ exports.checkTemplate = function (content) {
         if (param.tab.title === undefined) {
             fail.push('没找到title定义')
         }
-
         param.tab.row = parseInt(param.tab.row, 10)
         param.tab.defaultRow = parseInt(param.tab.defaultRow, 10)
 
@@ -79,6 +77,7 @@ exports.checkTemplate = function (content) {
             param.tab.row = maxNum
             result.warning.push('至多支持' + maxNum + '条数据，已更改为' + maxNum + '条')
         }
+
 
         if (isNaN(param.tab.row) || param.tab.row < 1) {
             param.tab.row = 1
@@ -114,7 +113,6 @@ exports.checkTemplate = function (content) {
         } else {
             result.arr.push(param)
         }
-
     })
 
     if (result.warning.length < 1) delete result.warning
