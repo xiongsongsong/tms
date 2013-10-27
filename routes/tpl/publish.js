@@ -77,14 +77,12 @@ function compileTemplate(doc, eachResult) {
         stream.on('open', function () {
             dataIdArr.forEach(function (item) {
                 var data = new db.Collection(db.Client, 'data')
-                console.log(item)
-                data.find({id: item}).sort({ts: -1}).limit(1).toArray(function (err, doc) {
+                data.find({id: item}, {fields: {fields: 1, data: 1, ts: 1, _id: 0}}).sort({ts: -1}).limit(1).toArray(function (err, doc) {
                     readyNum++
                     if (doc && doc[0]) {
-                        stream.write('var _' + item + '=' + JSON.stringify(doc[0], undefined, '\t') + '\r\n')
+                        stream.write('#run var _' + item + '=' + JSON.stringify(doc[0]) + '\r\n')
                     }
                     if (readyNum === dataIdArr.length) {
-                        console.log('完成拉')
                         stream.end()
                     }
                 })
