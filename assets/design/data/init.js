@@ -68,7 +68,6 @@ define(function (require, exports, module) {
         S.each(cf.arr, function (item) {
             if (item.tab.group === group) fields.push(item)
         })
-        console.log(fields)
         return fields
     }
 
