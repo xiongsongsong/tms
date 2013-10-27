@@ -56,8 +56,8 @@ app.get(/\/publish\/([a-z0-9]{24})/, function (req, res) {
 
 function compileTemplate(doc, eachResult) {
     //获取ID信息
-    var result = doc.source.match(helper.tagRe)
-    if (!result) return doc.source
+    var tag = doc.source.match(helper.tagRe)
+    if (!tag) return doc.source
 
     var dataIdArr = eachResult.arr.map(function (item) {
         return item.tab.id
@@ -69,21 +69,27 @@ function compileTemplate(doc, eachResult) {
 
     var pageUrl = path.join(__dirname, 'cms', doc.page_url)
     var stream
-    var idLength = dataIdArr.length;
     var readyNum = 0
+    var fieldsTable = {}
     //首先获取文件的路径
     mkdirs(path.dirname(pageUrl), '0777', function () {
         stream = fs.createWriteStream(pageUrl);
         stream.on('open', function () {
             dataIdArr.forEach(function (item) {
                 var data = new db.Collection(db.Client, 'data')
-                data.find({id: item}, {fields: {fields: 1, data: 1, ts: 1, _id: 0}}).sort({ts: -1}).limit(1).toArray(function (err, doc) {
+                data.find({id: item}, {fields: {fields: 1, data: 1, ts: 1, _id: 0}}).sort({ts: -1}).limit(1).toArray(function (err, tpl) {
                     readyNum++
-                    if (doc && doc[0]) {
-                        stream.write('#run var _' + item + '=' + JSON.stringify(doc[0]) + '\r\n')
+                    if (tpl && tpl[0]) {
+                        stream.write('#run var _' + item + '=' + JSON.stringify(tpl[0]) + '\r\n')
+                        fieldsTable[item] = {fields: tpl[0].fields}
                     }
                     if (readyNum === dataIdArr.length) {
-                        stream.end()
+                        translateTpl({
+                            stream: stream,
+                            tag: tag,
+                            fieldsTable: fieldsTable,
+                            source: doc.source
+                        })
                     }
                 })
             })
@@ -100,4 +106,18 @@ function compileTemplate(doc, eachResult) {
 
 }
 
-//将数据库内容写入文本
+//负责将CMS语法转换为JS         template语法
+function translateTpl(param) {
+    param.tag.forEach(function (tag) {
+        var id = tag.match(helper.idRe)
+        if (id) {
+            var str = '#each(_' + id[1] + '_ in _' + id[1] + ')\r\n'
+            //找到该ID的字段定义
+            param.fieldsTable[id[1]].fields.forEach(function (k, i) {
+                str += '#run var ' + k + ' = _' + id[1] + '_[' + i + ']\r\n'
+            })
+            param.stream.write(str)
+        }
+    })
+    param.stream.end()
+}

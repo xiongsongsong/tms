@@ -5,11 +5,12 @@
 var fieldRe = /^[a-zA-Z\u4e00-\u9fa5]+[a-zA-Z0-9\u4e00-\u9fa5]*$/
 var allowType = /^(string|img)$/i
 var tagRe = /#each[\s]*\{[\s\S]+?\}/gmi
-var idRe = /id[\s]*:[\s]*[a-z0-9]{40}/
+var idRe = /id[\s]*:[\s]*([a-z0-9]{40})/
 var crypto = require('crypto')
 var maxNum = 6000
 
 exports.tagRe = tagRe
+exports.idRe = idRe
 exports.fieldRe = fieldRe
 exports.maxNum = maxNum
 //最多允许有50个字段
