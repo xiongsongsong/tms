@@ -7,6 +7,7 @@ var db = require('db')
 var helper = require('./helper')
 var fs = require('fs')
 var path = require('path')
+var template = require('template')
 
 //递归创建所有目录
 var mkdirs = function (dirpath, mode, callback) {
@@ -50,11 +51,30 @@ app.get(/\/publish\/([a-z0-9]{24})/, function (req, res) {
             return
         }
         //开始编译模板
-        var template = compileTemplate(doc, eachResult)
+        compileTemplate(doc, eachResult, res)
     })
 })
 
-function compileTemplate(doc, eachResult) {
+
+//负责将CMS语法转换为JS         template语法
+function translateTpl(param) {
+    param.tag.forEach(function (tag) {
+        var id = tag.match(helper.idRe)
+        if (id) {
+            var str = '\r\n#each(_' + id[1] + '_ , _Index , _Arr in _' + id[1] + '.data)\r\n'
+            //找到该ID的字段定义
+            str += '#run '
+            param.fieldsTable[id[1]].fields.forEach(function (k, i, arr) {
+                str += ' var ' + k + ' = _' + id[1] + '_[' + i + '];'
+            })
+            str += '\r\n'
+            param.source = param.source.replace(tag, str)
+        }
+    })
+    return param.source
+}
+
+function compileTemplate(doc, eachResult, res) {
     //获取ID信息
     var tag = doc.source.match(helper.tagRe)
     if (!tag) return doc.source
@@ -69,8 +89,11 @@ function compileTemplate(doc, eachResult) {
 
     var pageUrl = path.join(__dirname, 'cms', doc.page_url)
     var stream
+    //负责存储数据
+    var Data = '#run '
     var readyNum = 0
     var fieldsTable = {}
+    //此变量存储CMS到Template的原始文本
     //首先获取文件的路径
     mkdirs(path.dirname(pageUrl), '0777', function () {
         stream = fs.createWriteStream(pageUrl);
@@ -80,44 +103,30 @@ function compileTemplate(doc, eachResult) {
                 data.find({id: item}, {fields: {fields: 1, data: 1, ts: 1, _id: 0}}).sort({ts: -1}).limit(1).toArray(function (err, tpl) {
                     readyNum++
                     if (tpl && tpl[0]) {
-                        stream.write('#run var _' + item + '=' + JSON.stringify(tpl[0]) + '\r\n')
+                        Data += ' var _' + item + '=' + JSON.stringify(tpl[0]) + ';'
                         fieldsTable[item] = {fields: tpl[0].fields}
                     }
                     if (readyNum === dataIdArr.length) {
-                        translateTpl({
-                            stream: stream,
+                        //换行符表示数据区域结束
+                        Data += '\r\n'
+                        var source = translateTpl({
                             tag: tag,
                             fieldsTable: fieldsTable,
                             source: doc.source
                         })
+                        Data += '\r\n'
+                        res.end(Data + source)
+                        try {
+                            source = template.compile(Data + source)
+                            res.end(template.render(source, {}))
+                        } catch (e) {
+                            res.write(e.toString())
+                            res.write('<br>---------------------------------------------------------------------<br>')
+                            res.end(source)
+                        }
                     }
                 })
             })
-            /* stream.write(dataIdArr.toString())
-             */
-            /*stream.write("My first row\n");
-             stream.write("My second row\n");
-             stream.end();*/
-            /*
-             stream.end()*/
         });
     })
-
-
-}
-
-//负责将CMS语法转换为JS         template语法
-function translateTpl(param) {
-    param.tag.forEach(function (tag) {
-        var id = tag.match(helper.idRe)
-        if (id) {
-            var str = '#each(_' + id[1] + '_ in _' + id[1] + ')\r\n'
-            //找到该ID的字段定义
-            param.fieldsTable[id[1]].fields.forEach(function (k, i) {
-                str += '#run var ' + k + ' = _' + id[1] + '_[' + i + ']\r\n'
-            })
-            param.stream.write(str)
-        }
-    })
-    param.stream.end()
 }
