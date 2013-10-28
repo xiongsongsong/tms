@@ -11,10 +11,7 @@ var template = require('template')
 
 //递归创建所有目录
 var mkdirs = function (dirpath, callback) {
-
-    //文件夹目录的数组
     var dir = dirpath.split(path.sep)
-    //累加文件夹路径，便于一个一个的创建
     var stepDir = []
 
     function createDirectory() {
@@ -25,16 +22,11 @@ var mkdirs = function (dirpath, callback) {
         stepDir.push(dir.shift())
         var currentDir = path.join.apply(null, stepDir)
         fs.exists(currentDir, function (exists) {
-            //检测是否为一个目录
             fs.lstat(currentDir, function (err, stats) {
-                //如果当前已经为一个目录，则创建下层目录
                 if (exists && stats && stats.isDirectory()) {
-                    console.log(currentDir + '是已经存在的目录')
                     createDirectory()
                 } else {
-                    console.log(currentDir + '不存在这个目录，开始创建')
-                    fs.mkdir(currentDir, function (a, b) {
-                        console.log(currentDir + '的创建结果' + a + b)
+                    fs.mkdir(currentDir, function () {
                         createDirectory()
                     })
                 }
