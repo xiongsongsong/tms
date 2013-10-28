@@ -26,6 +26,8 @@ block content
             a(href="/edit/data/#{item._id}") 编辑数据
             | |
             a(href="/publish/#{item._id}") 发布代码
+            | |
+            a(href="/act/#{item.page_url.replace(/.jstpl$/,'')}") 查看线上地址
     -})
 
 block js

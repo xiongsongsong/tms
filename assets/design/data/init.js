@@ -13,10 +13,20 @@ define(function (require, exports, module) {
     var tabArr = [];
 
     var $container = $('#editFormWrapper')
-    S.each(cf.arr, function (item) {
+    var repeatIdArr = []
+
+    //filter repeat id
+    cf.arr = S.filter(cf.arr, function (item) {
+        if (S.indexOf(item.tab.id, repeatIdArr) > -1) {
+            console.log(item.tab.id + ' are repeat')
+            return false
+        } else {
+            repeatIdArr.push(item.tab.id)
+        }
         if (S.indexOf(item.tab.group, tabArr) < 0) {
             tabArr.push(item.tab.group)
         }
+        return true
     })
 
     $container.html(template.render(tpl, {tabArr: tabArr}))

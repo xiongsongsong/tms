@@ -20,3 +20,5 @@ require('./save-data')
 //发布
 require('./publish')
 
+//展示
+require('./go')

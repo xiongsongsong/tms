@@ -111,7 +111,7 @@ function compileTemplate(doc, eachResult, res) {
         return doc.source
     }
 
-    var pageUrl = path.join(__dirname, 'cms', doc.page_url)
+    var pageUrl = path.join(helper.staticBaseDir, doc.page_url)
     var stream
     //负责存储数据
     var Data = '#run '

@@ -8,6 +8,8 @@ var tagRe = /#each[\s]*\{[\s\S]+?\}/gmi
 var idRe = /id[\s]*:[\s]*([a-z0-9]{40})/
 var crypto = require('crypto')
 var maxNum = 6000
+var path = require('path')
+exports.staticBaseDir = path.join('D:', 'tms', 'static')
 
 exports.tagRe = tagRe
 exports.idRe = idRe
