@@ -47,7 +47,7 @@ var pageUrlRe = /^[a-zA-Z0-9-_/]+$/
 exports.checkPageUrl = function (url) {
     url = typeof url === 'string' ? url.trim() : ''
     url = url.replace(/\/+/g, '/').replace(/^\/*|\/*$/g, '')
-    return pageUrlRe.test(url) ? url : false
+    return pageUrlRe.test(url) ? url + '.jstpl' : false
 }
 
 //将模板中#each中的的属性检索出来

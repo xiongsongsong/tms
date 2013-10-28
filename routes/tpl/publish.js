@@ -10,17 +10,39 @@ var path = require('path')
 var template = require('template')
 
 //递归创建所有目录
-var mkdirs = function (dirpath, mode, callback) {
-    fs.exists(dirpath, function (exists) {
-        if (exists) {
-            callback(dirpath);
-        } else {
-            //尝试创建父目录，然后再创建当前目录
-            mkdirs(path.dirname(dirpath), mode, function () {
-                fs.mkdir(dirpath, mode, callback);
-            });
+var mkdirs = function (dirpath, callback) {
+
+    //文件夹目录的数组
+    var dir = dirpath.split(path.sep)
+    //累加文件夹路径，便于一个一个的创建
+    var stepDir = []
+
+    function createDirectory() {
+        if (dir.length < 1) {
+            callback()
+            return
         }
-    });
+        stepDir.push(dir.shift())
+        var currentDir = path.join.apply(null, stepDir)
+        fs.exists(currentDir, function (exists) {
+            //检测是否为一个目录
+            fs.lstat(currentDir, function (err, stats) {
+                //如果当前已经为一个目录，则创建下层目录
+                if (exists && stats && stats.isDirectory()) {
+                    console.log(currentDir + '是已经存在的目录')
+                    createDirectory()
+                } else {
+                    console.log(currentDir + '不存在这个目录，开始创建')
+                    fs.mkdir(currentDir, function (a, b) {
+                        console.log(currentDir + '的创建结果' + a + b)
+                        createDirectory()
+                    })
+                }
+            })
+        })
+    }
+
+    createDirectory()
 };
 
 
@@ -61,13 +83,23 @@ function translateTpl(param) {
     param.tag.forEach(function (tag) {
         var id = tag.match(helper.idRe)
         if (id) {
-            var str = '\r\n#each(_' + id[1] + '_ , _Index , _Arr in _' + id[1] + '.data)\r\n'
-            //找到该ID的字段定义
-            str += '#run '
-            param.fieldsTable[id[1]].fields.forEach(function (k, i, arr) {
-                str += ' var ' + k + ' = _' + id[1] + '_[' + i + '];'
-            })
-            str += '\r\n'
+            var str = ''
+            //如果定义了字段或数据（特殊情况是，用户保存了模板，但还未保存任何数据）
+            if (param.fieldsTable[id[1]]) {
+                //如果未定义字段
+                if (param.fieldsTable[id[1]] === undefined) return
+                str = '\r\n#each(_' + id[1] + '_ , _Index , _Arr in _' + id[1] + '.data)\r\n'
+                //找到该ID的字段定义
+                str += '#run '
+                param.fieldsTable[id[1]].fields.forEach(function (k, i, arr) {
+                    str += ' var ' + k + ' = _' + id[1] + '_[' + i + '];'
+                })
+                str += '\r\n'
+            }
+            //构造一个空的循环
+            else {
+                str = '\r\n#each(empty in [])\r\n'
+            }
             param.source = param.source.replace(tag, str)
         }
     })
@@ -95,7 +127,7 @@ function compileTemplate(doc, eachResult, res) {
     var fieldsTable = {}
     //此变量存储CMS到Template的原始文本
     //首先获取文件的路径
-    mkdirs(path.dirname(pageUrl), '0777', function () {
+    mkdirs(path.dirname(pageUrl), function () {
         stream = fs.createWriteStream(pageUrl);
         stream.on('open', function () {
             dataIdArr.forEach(function (item) {
@@ -115,13 +147,18 @@ function compileTemplate(doc, eachResult, res) {
                             source: doc.source
                         })
                         Data += '\r\n'
-                        res.end(Data + source)
                         try {
                             source = template.compile(Data + source)
-                            res.end(template.render(source, {}))
+                            try {
+                                res.end('发布成功！' + template.render(source, {}))
+                                stream.write(source)
+                                stream.end()
+                            } catch (e) {
+                                res.end('编译模板时出现错误' + e + '----' + source)
+                            }
                         } catch (e) {
                             res.write(e.toString())
-                            res.write('<br>---------------------------------------------------------------------<br>')
+                            res.write('\r\n<br>---------------------------------------------------------------------<br>')
                             res.end(source)
                         }
                     }
