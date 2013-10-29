@@ -6,8 +6,10 @@ define(function (require, exports, module) {
     var form = document.forms['excel']
     var S = KISSY
 
-    $(form).on('submit', function (ev) {
+    var editExcel = require('./edit-excel')
 
+    $(form).on('submit', function (ev) {
+        editExcel.updateAll()
         $.post('/save-data', {data: S.JSON.stringify(getFormData())}, function (result) {
             console.log(result)
         })

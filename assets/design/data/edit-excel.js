@@ -10,7 +10,6 @@ define(function (require, exports, module) {
         ev.preventDefault()
     })
 
-
     $container.on('mousedown', 'div.excel-trigger-area', function (ev) {
 
         var $currentTarget = $(ev.currentTarget);
@@ -92,27 +91,44 @@ define(function (require, exports, module) {
         var colIndex = $excel.data('position').colIndex
         //获取到当前的行
         var currentRow = $($excel.data('allRow')[($excel.data('position').rowIndex)])
-        $excel.data('inputField').val(currentRow.find('textarea[data-col-index=' + colIndex + ']').val())
+        var val = currentRow.find('textarea[data-col-index=' + colIndex + ']').val()
+        if (val) {
+            $excel.data('inputField').val(val)
+        } else {
+            $excel.data('inputField').val('')
+        }
     }
 
     //将输入框的数据刷入行中
     exports.updateData = function ($excel) {
         var inputFieldPosition = $excel.data('inputFieldPosition')
         var value = $excel.data('inputField').val()
-
         //获取当前的列索引
         var colIndex = $excel.data('position').colIndex
+        var rowIndex = $excel.data('position').rowIndex
+
         //获取到当前的行
-        var currentRow = $($excel.data('allRow')[($excel.data('position').rowIndex)])
+        var currentRow = $($excel.data('allRow')[rowIndex])
+
+        if (colIndex === undefined || currentRow === undefined) return
+        console.log(value, colIndex, rowIndex)
 
         //检测是否已经有填充数据
         var $span = $('<textarea class="J-cell" data-col-index="' + colIndex + '" readonly>' + value + '</textarea>')
         if (currentRow.find('textarea[data-col-index=' + colIndex + ']').size() < 1) {
-            $span.appendTo($excel.data('allRow')[($excel.data('position').rowIndex)]).css(inputFieldPosition)
+            $span.appendTo($excel.data('allRow')[rowIndex]).css(inputFieldPosition)
         } else {
             currentRow.find('textarea[data-col-index=' + colIndex + ']').val(value)
         }
-        $excel.data('inputField').val('')
+    }
+
+    exports.updateAll = function () {
+        $('div.excel-trigger-area').each(function (index, item) {
+            var $excel = $(item).parents('div.excel')
+            if ($excel.data('inputFieldPosition')) {
+                exports.updateData($excel)
+            }
+        })
     }
 })
 

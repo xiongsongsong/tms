@@ -18,7 +18,6 @@ define(function (require, exports, module) {
     //filter repeat id
     cf.arr = S.filter(cf.arr, function (item) {
         if (S.indexOf(item.tab.id, repeatIdArr) > -1) {
-            console.log(item.tab.id + ' are repeat')
             return false
         } else {
             repeatIdArr.push(item.tab.id)
