@@ -5,11 +5,55 @@
 define(function (require, exports, module) {
     var $container = $('#main-container')
 
-
     $container.on('select selectstart', function (ev) {
         ev.preventDefault()
     })
 
+    //插入新行
+    $container.on('mousemove', 'div.excel-trigger-area', function (ev) {
+
+        var $currentTarget = $(ev.currentTarget)
+        var $excel = $currentTarget.parents('div.excel')
+
+        if (!$excel.data('allRow')) {
+            //获取当前行号
+            $excel.data('allRow', $excel.find('.excel-container')[0].getElementsByTagName('div'))
+            var allRow = $excel.data('allRow')
+        } else {
+            allRow = $excel.data('allRow')
+        }
+        var rowIndex = 0
+        for (var i = 0; i < allRow.length; i++) {
+            if ($(allRow[i]).position().top + allRow[i].offsetHeight > ev.offsetY) {
+                rowIndex = i
+                break;
+            }
+        }
+        var control = $excel.find('div.J-add-delete-row')
+        $(control).css({
+            top: $(allRow[rowIndex]).position().top
+        }).data('rowIndex', rowIndex)
+    })
+
+    $container.on('click', 'div.J-add-delete-row', function (ev) {
+        var $target = $(ev.target)
+        var $currentTarget = $(ev.currentTarget)
+        var $excel = $currentTarget.parents('div.excel')
+
+        if ($target.hasClass('J-add')) {
+            $('<div class="J-row"></div>').insertBefore($excel.data('allRow')[$currentTarget.data('rowIndex')])
+        }
+        if ($target.hasClass('J-delete')) {
+            if ($excel.data('allRow').length === 1) {
+                alert('最后一行不能删除')
+                return
+            }
+            $($excel.data('allRow')[$currentTarget.data('rowIndex')]).remove()
+        }
+    })
+
+
+    //单击单元格
     $container.on('mousedown', 'div.excel-trigger-area', function (ev) {
 
         var $currentTarget = $(ev.currentTarget);
@@ -106,16 +150,13 @@ define(function (require, exports, module) {
         //获取当前的列索引
         var colIndex = $excel.data('position').colIndex
         var rowIndex = $excel.data('position').rowIndex
-
         //获取到当前的行
         var currentRow = $($excel.data('allRow')[rowIndex])
-
         if (colIndex === undefined || currentRow === undefined) return
-        console.log(value, colIndex, rowIndex)
-
         //检测是否已经有填充数据
         var $span = $('<textarea class="J-cell" data-col-index="' + colIndex + '" readonly>' + value + '</textarea>')
         if (currentRow.find('textarea[data-col-index=' + colIndex + ']').size() < 1) {
+            delete inputFieldPosition.top
             $span.appendTo($excel.data('allRow')[rowIndex]).css(inputFieldPosition)
         } else {
             currentRow.find('textarea[data-col-index=' + colIndex + ']').val(value)

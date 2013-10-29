@@ -1,3 +1,8 @@
+#main-container {
+    width: 1180px;
+    margin: 0 auto;
+}
+
 #tab-area li {
     display: inline-block;
     padding: 12px 24px;
@@ -134,4 +139,33 @@ ul.field li {
     overflow: hidden;
     z-index: 0;
 
+}
+
+/*添加删除行*/
+.J-add-remove {
+    position: absolute;
+    width: 40px;
+}
+
+.J-add-delete-row {
+    position: absolute;
+    left: -30px;
+    top: -99999em;
+    width: 30px;
+    background: #008800;
+    text-align: center;
+    z-index: 9;
+    border-radius: 3px;
+    overflow: hidden;
+    cursor: default;
+}
+
+.J-add-delete-row span {
+    display: block;
+    color: #fff;
+    height: 49%;
+}
+
+.J-add-delete-row span:hover {
+    background: #050;
 }
