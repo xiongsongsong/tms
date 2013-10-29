@@ -102,14 +102,10 @@ ul.field li {
     left: -999em;
     top: -999em;
     border: solid 1px green;
-    margin-left: -1px;
-    margin-top: -1px;
+    margin-left: -2px;
+    margin-top: -2px;
     box-shadow: inset 0 0 3px #080;
     z-index: 10;
-    -webkit-transition: all .1s ease-in-out;
-    -moz-transition: all .1s ease-in-out;
-    -o-transition: all .1s ease-in-out;
-    transition: all .1s ease-in-out;
     background: #fff;
 }
 
@@ -120,11 +116,9 @@ ul.field li {
     border: none;
     margin: 0;
     outline: none;
-    padding: 3px;
     box-shadow: 0 0 5px green;
     height: 100%;
-    max-width: 120%;
-    max-height: 130%;
+    resize: none;
 }
 
 .J-cell {

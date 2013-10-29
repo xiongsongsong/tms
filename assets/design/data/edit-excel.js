@@ -5,7 +5,7 @@
 define(function (require, exports, module) {
     var $container = $('#main-container')
 
-    $container.on('select selectstart', function (ev) {
+    $container.on('select', function (ev) {
         ev.preventDefault()
     })
 
@@ -39,7 +39,6 @@ define(function (require, exports, module) {
         var $target = $(ev.target)
         var $currentTarget = $(ev.currentTarget)
         var $excel = $currentTarget.parents('div.excel')
-
         if ($target.hasClass('J-add')) {
             $('<div class="J-row"></div>').insertBefore($excel.data('allRow')[$currentTarget.data('rowIndex')])
         }
