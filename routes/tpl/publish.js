@@ -122,8 +122,8 @@ function compileTemplate(doc, eachResult, res) {
     mkdirs(path.dirname(pageUrl), function () {
         stream = fs.createWriteStream(pageUrl);
         stream.on('open', function () {
+            var data = new db.Collection(db.Client, 'data')
             dataIdArr.forEach(function (item) {
-                var data = new db.Collection(db.Client, 'data')
                 data.find({id: item}, {fields: {fields: 1, data: 1, ts: 1, _id: 0}}).sort({ts: -1}).limit(1).toArray(function (err, tpl) {
                     readyNum++
                     if (tpl && tpl[0]) {

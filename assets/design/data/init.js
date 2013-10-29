@@ -69,6 +69,8 @@ define(function (require, exports, module) {
 
         changeFieldsWidth()
 
+        //将输入框和各种单元格，与字段对齐
+        if (editExcel)editExcel.alignment()
     }
 
     //传入group，返回包含该group的所有对象
@@ -92,7 +94,7 @@ define(function (require, exports, module) {
     $(window).on('resize', changeFieldsWidth)
 
     //处理具体的编辑业务
-    require('./edit-excel')
+    var editExcel = require('./edit-excel')
 
     //保存数据
     require('./save-data')

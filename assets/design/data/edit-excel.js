@@ -109,17 +109,8 @@ define(function (require, exports, module) {
             rowIndex: rowIndex
         })
 
-
-        //将输入框定位到正确的单元格
-        $excel.data('inputFieldPosition', {
-            left: arr[index][0],
-            top: $(allRow[rowIndex]).position().top,
-            width: arr[index][1] - arr[index][0],
-            height: allRow[rowIndex].offsetHeight
-        })
-
-        //定位输入框到正确的位置
-        exports.setInputFieldPosition($excel)
+        //将单元格和字段对齐
+        exports.alignment()
 
     })
 
@@ -133,7 +124,7 @@ define(function (require, exports, module) {
         //获取当前的列索引
         var colIndex = $excel.data('position').colIndex
         //获取到当前的行
-        var currentRow = $($excel.data('allRow')[($excel.data('position').rowIndex)])
+        var currentRow = $($excel.data('allRow')[$excel.data('position').rowIndex])
         var val = currentRow.find('textarea[data-col-index=' + colIndex + ']').val()
         if (val) {
             $excel.data('inputField').val(val)
@@ -162,6 +153,8 @@ define(function (require, exports, module) {
         }
     }
 
+    //将所有输入框中的数据刷入单元格
+    //否则，要在各个excel中不同的单元格mousedown，会让用户很麻烦
     exports.updateAll = function () {
         $('div.excel-trigger-area').each(function (index, item) {
             var $excel = $(item).parents('div.excel')
@@ -170,6 +163,37 @@ define(function (require, exports, module) {
             }
         })
     }
+
+    //将单元格与字段对齐，在调整窗口大小的时候
+    exports.alignment = function () {
+        $('div.excel-trigger-area:visible').each(function (index, item) {
+            var $excel = $(item).parents('div.excel')
+            var arr = []
+            if (!$excel.data('excelFields')) return
+            $excel.data('excelFields').each(function (index, item) {
+                arr.push([$(item).position().left, $(item).position().left + item.offsetWidth])
+            })
+
+            var allRow = $excel.data('allRow')
+
+            //将输入框定位到正确的单元格
+            $excel.data('inputFieldPosition', {
+                left: arr[$excel.data('position').colIndex][0],
+                top: $(allRow[$excel.data('position').rowIndex]).position().top,
+                width: arr[index][1] - arr[index][0],
+                height: allRow[$excel.data('position').rowIndex].offsetHeight
+            })
+
+            //定位输入框到正确的位置
+            exports.setInputFieldPosition($excel)
+
+        })
+    }
+
+    $(window).on('resize', function () {
+        exports.alignment()
+    })
+
 })
 
 

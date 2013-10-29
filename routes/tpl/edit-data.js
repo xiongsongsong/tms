@@ -22,7 +22,27 @@ app.get(/\/edit\/data\/(.+)/, function (req, res) {
         if (!err && docs) {
             //开始获取模板的编辑数据
             var result = helper.checkTemplate(docs.source)
-            res.render('tpl/edit-data', {docs: docs, result: JSON.stringify(result, undefined, '    ')})
+
+            //查询全部的数据
+            var idArr = []
+            result.arr.forEach(function (item) {
+                if (idArr.indexOf(item.tab.id) < 0) idArr.push(item.tab.id)
+            })
+
+            var data = new db.Collection(db.Client, 'data')
+            var readyNum = 0
+            var data = new db.Collection(db.Client, 'data')
+            idArr.forEach(function (item) {
+                data.find({id: item}, {fields: {fields: 1, data: 1, ts: 1, _id: 0}}).sort({ts: -1}).limit(1).toArray(function (err, tpl) {
+                    readyNum++
+                    if (!err && tpl && tpl[0]) {
+                        result[item] = tpl[0]
+                    }
+                    if (readyNum === idArr.length) {
+                        res.render('tpl/edit-data', {docs: docs, result: JSON.stringify(result, undefined, '    ')})
+                    }
+                })
+            })
         } else {
             res.end('404')
         }
