@@ -143,6 +143,7 @@ function compileTemplate(doc, eachResult, res) {
                             source = template.compile(Data + source)
                             try {
                                 res.end('发布成功！' + template.render(source, {}))
+                                require('./go').update(doc.page_url.replace(/.jstpl$/, ''))
                                 stream.write(source)
                                 stream.end()
                             } catch (e) {
