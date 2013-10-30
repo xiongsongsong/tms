@@ -30,14 +30,7 @@ define(function (require, exports, module) {
 
     $container.html(template.render(tpl, {tabArr: tabArr}))
 
-    //当点击tab的时候，构造表单
-    var $tab = $('#tab-area')
-    $tab.on('click', 'li[data-group-trigger]', showExcel)
-
-    $tab.find('li[data-group-trigger]').eq(0).trigger('click', showExcel)
-
     //切换tab，并构造表单
-
     function showExcel(ev) {
         var target = ev.currentTarget
 
@@ -63,6 +56,19 @@ define(function (require, exports, module) {
         var $wrapper = $container.find('[data-group=' + group + ']')
         if ($wrapper.data('is-build') !== true) {
             $wrapper.html(template.render(excelTpl, {fields: fields})).data('is-build', true)
+            //准备一些变量并绑定到data上，供其他脚本中使用
+            $wrapper.find('div.excel').each(function (index, excel) {
+                var $excel = $(excel)
+                var $inputWrapper = $excel.find('.J-input')
+                //保存所有行的引用
+                $excel.data('allRow', $excel.find('.excel-container')[0].getElementsByTagName('div'))
+                //输入框的包装容器
+                $excel.data('inputFieldWrapper', $inputWrapper)
+                //输入框
+                $excel.data('inputField', $inputWrapper.find('textarea'))
+                //保存字段引用
+                $excel.data('excelFields', $excel.find('div.excel-field li.field'))
+            })
         }
         //隐藏所有表格，显示当前表格
         $container.find('[data-group]').hide().filter('[data-group=' + group + ']').show()
@@ -70,7 +76,10 @@ define(function (require, exports, module) {
         changeFieldsWidth()
 
         //将输入框和各种单元格，与字段对齐
-        if (editExcel)editExcel.alignment()
+        editExcel.alignment()
+
+        //切换时将数据刷入
+        editExcel.updateAll()
     }
 
     //传入group，返回包含该group的所有对象
@@ -98,5 +107,11 @@ define(function (require, exports, module) {
 
     //保存数据
     require('./save-data')
+
+    //当点击tab的时候，构造表单
+    var $tab = $('#tab-area')
+    $tab.on('click', 'li[data-group-trigger]', showExcel)
+
+    $tab.find('li[data-group-trigger]').eq(0).trigger('click', showExcel)
 
 })
