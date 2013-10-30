@@ -68,6 +68,11 @@ define(function (require, exports, module) {
                 $excel.data('inputField', $inputWrapper.find('textarea'))
                 //保存字段引用
                 $excel.data('excelFields', $excel.find('div.excel-field li.field'))
+
+                $excel.data('inputField').on('blur', function () {
+                    editExcel.updateData($excel)
+                })
+
             })
         }
         //隐藏所有表格，显示当前表格

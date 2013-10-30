@@ -229,6 +229,7 @@ define(function (require, exports, module) {
         }
 
         $(str).insertAfter($excel.data('allRow')[rowIndex])
+        $($excel.data('allRow')[rowIndex]).remove()
         exports.alignment()
     })
 
