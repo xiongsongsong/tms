@@ -13,7 +13,7 @@ define(function (require, exports, module) {
         $.post('/compile-template',
             $form.serialize(), function (data) {
                 if (!data.err) {
-                    $('#compile-template').val(data.docs[0].source)
+                    alert('保存成功')
                 } else {
                     alert('存在错误：\r\n' + S.JSON.stringify(data, undefined, '    '))
                 }
