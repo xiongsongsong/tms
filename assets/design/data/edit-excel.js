@@ -29,9 +29,11 @@ define(function (require, exports, module) {
     })
 
     $container.on('click', 'div.J-add-delete-row', function (ev) {
+        exports.updateAll()
         var $target = $(ev.target)
         var $currentTarget = $(ev.currentTarget)
         var $excel = $currentTarget.parents('div.excel')
+        $excel.data('inputFieldWrapper').hide()
         if ($target.hasClass('J-add')) {
             $('<div class="J-row"></div>').insertBefore($excel.data('allRow')[$currentTarget.data('rowIndex')])
         }
@@ -101,6 +103,8 @@ define(function (require, exports, module) {
         var $position = $excel.data('position')
         if (!$position) return
 
+        $excel.data('inputFieldWrapper').show()
+
         $excel.data('inputFieldWrapper').css($excel.data('inputFieldPosition'))
         setTimeout(function () {
             $excel.data('inputField').focus()
@@ -121,6 +125,7 @@ define(function (require, exports, module) {
     //将输入框的数据刷入行中
     exports.updateData = function ($excel) {
         var $position = $excel.data('position')
+        if (!$position) return
         var inputFieldPosition = $excel.data('inputFieldPosition')
         var value = $excel.data('inputField').val()
         //获取当前的列索引
@@ -147,6 +152,7 @@ define(function (require, exports, module) {
             if ($excel.data('inputFieldPosition')) {
                 exports.updateData($excel)
             }
+            $excel.removeData('position')
         })
     }
 
@@ -186,6 +192,43 @@ define(function (require, exports, module) {
     }
 
     $(window).on('resize', function () {
+        exports.alignment()
+    })
+
+
+    //粘贴Excel数据
+    $container.on('click', '.J-fill-excel-trigger', function (ev) {
+        var $excel = $(ev.currentTarget).parents('div.excel')
+        var $textarea = $excel.data('inputField')
+        var value = $textarea.val()
+        //分析Excel数据
+        var reg = /[\n\t]"[^\t]*(\n+)[^\t]*"[\n\t]/g;
+        value = value.replace(reg, function (re) {
+            return re.replace(/["\n]/g, '');
+        });
+        value = value.replace(/\r/g, '');
+        value = value.replace(/'/g, '’');
+        var rowDataList = value.split('\n');
+        var excelData = [];
+        for (var i = 0; i < rowDataList.length; i++) {
+            var row = rowDataList[i];
+            if ($.trim(row).length < 1) continue;
+            excelData.push(rowDataList[i].split('\t'));
+        }
+
+        var colIndex = $excel.data('position').colIndex
+        var rowIndex = $excel.data('position').rowIndex
+        var str = ''
+        for (var i = 0; i < excelData.length; i++) {
+            str += '<div class="J-row">' + KISSY.map(excelData[i],function (val, col) {
+                var _col = (col + colIndex)
+                //防止粘贴的字段超出excel所定义的字段范围
+                if (_col > $excel.data('excelFields').size()) return '';
+                return '<textarea class="J-cell" data-col-index="' + (col + colIndex) + '">' + val + '</textarea>'
+            }).join('') + '</div>'
+        }
+
+        $(str).insertAfter($excel.data('allRow')[rowIndex])
         exports.alignment()
     })
 
