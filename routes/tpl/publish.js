@@ -49,29 +49,38 @@ app.get(/\/publish\/([a-z0-9]{24})/, function (req, res) {
         return
     }
 
+    console.log('开始发布' + id)
+
     var data = new db.Collection(db.Client, 'tpl-source')
     data.find({page_id: id}).sort({ts: -1}).limit(1).toArray(function (err, doc) {
         if (err || !doc || doc.length < 1) {
             res.end('发布失败')
+            console.log('未能找到' + id + '，发布失败')
             return
         }
         doc = doc[0]
 
+        console.log('找到：' + doc.page_name + '，页面URL是' + doc.page_url + '，开始检查模板')
+
         //首先检测模板合法性
         var eachResult = helper.checkTemplate(doc.source)
+
         //如果存在一个错误的对象
         if (eachResult.err) {
+            console.log('发现错误：', eachResult.err)
             res.json({err: eachResult.err})
             return
         }
+        console.log('效验成功，开始编译模板')
         //开始编译模板
         compileTemplate(doc, eachResult, res)
     })
 })
 
 
-//负责将CMS语法转换为JS         template语法
+//负责将CMS语法转换为JS template语法
 function translateTpl(param) {
+    if (Array.isArray(param.tag) === false) return param.source
     param.tag.forEach(function (tag) {
         var id = tag.match(helper.idRe)
         if (id) {
@@ -99,13 +108,16 @@ function translateTpl(param) {
 }
 
 function compileTemplate(doc, eachResult, res) {
+
     //获取ID信息
     var tag = doc.source.match(helper.tagRe)
-    if (!tag) return doc.source
 
-    var dataIdArr = eachResult.arr.map(function (item) {
-        return item.tab.id
-    })
+    var dataIdArr = []
+    if (Array.isArray(eachResult.arr)) {
+        eachResult.arr.map(function (item) {
+            return item.tab.id
+        })
+    }
 
     if (!Array.isArray(dataIdArr)) {
         return doc.source
@@ -119,44 +131,54 @@ function compileTemplate(doc, eachResult, res) {
     var fieldsTable = {}
     //此变量存储CMS到Template的原始文本
     //首先获取文件的路径
+    console.log('开始创建目录' + pageUrl + '的目录结构')
     mkdirs(path.dirname(pageUrl), function () {
         stream = fs.createWriteStream(pageUrl);
         stream.on('open', function () {
+            console.log('文档已经打开，准备写入文档流')
             var data = new db.Collection(db.Client, 'data')
-            dataIdArr.forEach(function (item) {
-                data.find({id: item}, {fields: {fields: 1, data: 1, ts: 1, _id: 0}}).sort({ts: -1}).limit(1).toArray(function (err, tpl) {
-                    readyNum++
-                    if (tpl && tpl[0]) {
-                        Data += ' var _' + item + '=' + JSON.stringify(tpl[0]) + ';'
-                        fieldsTable[item] = {fields: tpl[0].fields}
-                    }
-                    if (readyNum === dataIdArr.length) {
-                        //换行符表示数据区域结束
-                        Data += '\r\n'
-                        var source = translateTpl({
-                            tag: tag,
-                            fieldsTable: fieldsTable,
-                            source: doc.source
-                        })
-                        Data += '\r\n'
-                        try {
-                            source = template.compile(Data + source)
-                            try {
-                                res.end('发布成功！' + template.render(source, {}))
-                                require('./go').update(doc.page_url.replace(/.jstpl$/, ''))
-                                stream.write(source)
-                                stream.end()
-                            } catch (e) {
-                                res.end('编译模板时出现错误' + e + '----' + source)
-                            }
-                        } catch (e) {
-                            res.write(e.toString())
-                            res.write('\r\n<br>---------------------------------------------------------------------<br>')
-                            res.end(source)
+
+            //如果存在id，则说明需要用数据去渲染，否则就完全是一个静态页面
+            if (dataIdArr.length > 0) {
+                dataIdArr.forEach(function (item) {
+                    data.find({id: item}, {fields: {fields: 1, data: 1, ts: 1, _id: 0}}).sort({ts: -1}).limit(1).toArray(function (err, tpl) {
+                        readyNum++
+                        if (tpl && tpl[0]) {
+                            Data += ' var _' + item + '=' + JSON.stringify(tpl[0]) + ';'
+                            fieldsTable[item] = {fields: tpl[0].fields}
                         }
-                    }
+                        if (readyNum === dataIdArr.length) {
+                            //换行符表示数据区域结束
+                            Data += '\r\n'
+                            var source = translateTpl({
+                                tag: tag,
+                                fieldsTable: fieldsTable,
+                                source: doc.source
+                            })
+                            Data += '\r\n'
+                            try {
+                                source = template.compile(Data + source)
+                                try {
+                                    res.end('发布成功！' + template.render(source, {}))
+                                    require('./go').update(doc.page_url.replace(/.jstpl$/, ''))
+                                    stream.write(source)
+                                    stream.end()
+                                } catch (e) {
+                                    res.end('编译模板时出现错误' + e + '----' + source)
+                                }
+                            } catch (e) {
+                                res.write(e.toString())
+                                res.write('\r\n<br>---------------------------------------------------------------------<br>')
+                                res.end(source)
+                            }
+                        }
+                    })
                 })
-            })
+            } else {
+                res.end('发布成功！' + template.render(doc.source, {}))
+                stream.write(doc.source)
+                stream.end()
+            }
         });
     })
 }
