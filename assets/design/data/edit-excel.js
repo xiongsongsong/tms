@@ -95,6 +95,10 @@ define(function (require, exports, module) {
         //将单元格和字段对齐
         exports.alignment()
 
+        setTimeout(function () {
+            $excel.data('inputField').focus()
+        }, 100)
+
     })
 
     //定位输入框
@@ -106,9 +110,6 @@ define(function (require, exports, module) {
         $excel.data('inputFieldWrapper').show()
 
         $excel.data('inputFieldWrapper').css($excel.data('inputFieldPosition'))
-        setTimeout(function () {
-            $excel.data('inputField').focus()
-        }, 100)
         //查看当前定位点，是否有数据，有则显示出来
         //获取当前的列索引
         var colIndex = $position.colIndex
