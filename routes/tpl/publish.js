@@ -109,18 +109,17 @@ function translateTpl(param) {
 
 function compileTemplate(doc, eachResult, res) {
 
+    res.header('content-type', 'text/plain;charset=utf-8')
+
     //获取ID信息
     var tag = doc.source.match(helper.tagRe)
 
     var dataIdArr = []
     if (Array.isArray(eachResult.arr)) {
         eachResult.arr.map(function (item) {
+            dataIdArr.push(item.tab.id)
             return item.tab.id
         })
-    }
-
-    if (!Array.isArray(dataIdArr)) {
-        return doc.source
     }
 
     var pageUrl = path.join(helper.staticBaseDir, doc.page_url)
@@ -157,16 +156,23 @@ function compileTemplate(doc, eachResult, res) {
                             })
                             Data += '\r\n'
                             try {
+                                console.log('开始编译并尝试发布')
                                 source = template.compile(Data + source)
                                 try {
-                                    res.end('发布成功！' + template.render(source, {}))
+                                    console.log('编译成功，开始尝试eval')
+                                    template.render(source, {})
+                                    console.log('eval成功，开始保存到磁盘')
+                                    //更新页面缓存
                                     require('./go').update(doc.page_url.replace(/.jstpl$/, ''))
                                     stream.write(source)
                                     stream.end()
+                                    console.log('保存完毕')
+                                    res.end('发布成功，以下是编译后的结果\r\n' + source)
                                 } catch (e) {
                                     res.end('编译模板时出现错误' + e + '----' + source)
                                 }
                             } catch (e) {
+                                console.log('编译失败')
                                 res.write(e.toString())
                                 res.write('\r\n<br>---------------------------------------------------------------------<br>')
                                 res.end(source)
@@ -175,9 +181,14 @@ function compileTemplate(doc, eachResult, res) {
                     })
                 })
             } else {
-                res.end('发布成功！' + template.render(doc.source, {}))
-                stream.write(doc.source)
-                stream.end()
+                try {
+                    template.render(doc.source, {})
+                    stream.write(doc.source)
+                    stream.end()
+                    res.end('发布成功\r\n' + doc.source)
+                } catch (e) {
+                    res.end('发布失败\r\n' + doc.source)
+                }
             }
         });
     })

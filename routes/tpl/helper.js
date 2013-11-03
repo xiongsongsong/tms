@@ -3,9 +3,9 @@
  */
 
 var fieldRe = /^[a-zA-Z\u4e00-\u9fa5]+[a-zA-Z0-9\u4e00-\u9fa5]*$/
-var allowType = /^(string|img)$/i
+var allowType = /^(url|string|img)$/i
 var tagRe = /#each[\s]*\{[\s\S]+?\}/gmi
-var idRe = /id[\s]*:[\s]*([a-z0-9]{40})/
+var idRe = /[\{\s,]id[\s]*:[\s]*([a-z0-9]{40})/
 var crypto = require('crypto')
 var maxNum = 6000
 var path = require('path')
@@ -29,7 +29,7 @@ exports.checkId = function (content, random) {
                 //随机因子+时间戳，保证生成的sha1效验和是唯一的
                 newId.update(item + (typeof item === 'string' ? random : Math.random().toString()) + Date.now() + Math.random());
                 //生成一个新id，在这之前删除掉错误的id
-                content = content.replace(item, item.replace(/id[\s]*:[\s]*[^,}\s]+/gi, '')
+                content = content.replace(item, item.replace(/[,{\s]id[\s]*:[\s]*[^,}\s]+/gi, '')
                     .replace(/(?:,,)/g, ',')
                     .replace(/,\}/g, '}')
                     .replace(/\}$/, ',id:' + newId.digest('hex') + '}'))
@@ -80,7 +80,6 @@ exports.checkTemplate = function (content) {
             param.tab.row = maxNum
             result.warning.push('至多支持' + maxNum + '条数据，已更改为' + maxNum + '条')
         }
-
 
         if (isNaN(param.tab.row) || param.tab.row < 1) {
             param.tab.row = 1
