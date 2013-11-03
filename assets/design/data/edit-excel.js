@@ -172,7 +172,7 @@ define(function (require, exports, module) {
                 $excel.data('inputFieldPosition', {
                     left: arr[$position.colIndex][0],
                     top: $(allRow[$position.rowIndex]).position().top,
-                    width: arr[index][1] - arr[index][0],
+                    width: arr[index] !== undefined ? arr[index][1] - arr[index][0] : item.offsetWidth,
                     height: allRow[$position.rowIndex].offsetHeight
                 })
             }
